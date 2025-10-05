@@ -1,0 +1,503 @@
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { create } from 'zustand';
+import { QueryClient, QueryClientProvider, useQuery, useMutation } from '@tanstack/react-query';
+import { TrendingUp, Cpu, Database, Activity, BrainCircuit, Bot, FileText, Sparkles, AlertTriangle, CheckCircle } from 'lucide-react';
+
+// ... (Interfaces & Types remain the same)
+
+// =================================================================
+// 🧠 ZUSTAND STORE: ศูนย์กลางการจัดการ State ของระบบทั้งหมด
+// =================================================================
+// ... (ArchonStore remains the same)
+
+// =================================================================
+// ⚡️ ARCHON GENESIS SERVICE: Service Layer ที่จำลอง Backend ขั้นสูง
+// =================================================================
+class ArchonGenesisService {
+  private baseURL = 'https://api.archon-genesis.dev/v3';
+
+  async getAIModels(): Promise<AIModel[]> {
+    console.log("Fetching models...");
+    await new Promise(res => setTimeout(res, 1000));
+    return [
+        { id: 'nexus-core-v3', name: 'NexusCore Genesis', accuracy: 99.8, specialization: 'Causality Inference', status: 'active', capabilities: ['Deep Learning', 'Pattern Recognition'] },
+        { id: 'sentinel-guard-v2', name: 'SentinelGuard', accuracy: 98.9, specialization: 'Anomaly Detection', status: 'active', capabilities: ['Cybersecurity', 'Threat Analysis'] },
+        { id: 'oracle-seer-v1', name: 'Oracle Seer', accuracy: 97.5, specialization: 'Predictive Analytics', status: 'training', capabilities: ['Forecasting', 'Risk Assessment'] },
+    ];
+  }
+
+  async createAIProject(projectDetails: Pick<DataProject, 'name' | 'aiModelId'>): Promise<DataProject> {
+    console.log("Creating project...");
+    await new Promise(res => setTimeout(res, 800));
+    return {
+        id: `proj_${Date.now()}`,
+        name: projectDetails.name,
+        dataSource: 'Global Data Stream',
+        aiModelId: projectDetails.aiModelId,
+        status: 'analyzing',
+        insights: [],
+    };
+  }
+
+  async performAdvancedAnalysis(projectId: string): Promise<AIInsight[]> {
+    console.log(`Analyzing project ${projectId}...`);
+    await new Promise(res => setTimeout(res, 2500));
+    return [
+        { type: 'causality', confidence: 98, description: 'Discovered a causal link between user engagement and feature X.', impact: 'critical' },
+        { type: 'prediction', confidence: 95, description: 'Predicts a 30% increase in resource demand next quarter.', impact: 'high' },
+        { type: 'anomaly', confidence: 99, description: 'Detected unusual network traffic patterns from a new vector.', impact: 'medium' },
+    ];
+  }
+}
+
+const archonService = new ArchonGenesisService();
+const queryClient = new QueryClient();
+
+// =================================================================
+// ⚛️ CUSTOM HOOKS (with React Query): จัดการ Logic การดึงข้อมูล
+// =================================================================
+const useSystemData = () => {
+    const { setModels, addLog } = useArchonStore();
+
+    return useQuery({
+        queryKey: ['system-initialization'],
+        queryFn: async () => {
+            addLog({ message: 'Initializing system...', level: 'info' });
+            const models = await archonService.getAIModels();
+            addLog({ message: 'System core components loaded.', level: 'info' });
+            return models;
+        },
+        onSuccess: setModels,
+        onError: (error) => {
+            addLog({ message: `System initialization failed: ${error}`, level: 'error' });
+        },
+        staleTime: Infinity,
+    });
+};
+
+const useCreateAndAnalyzeProject = () => {
+    const { addProject, updateProject, addLog } = useArchonStore();
+
+    return useMutation({
+        mutationFn: async (details: { name: string, modelId: string }) => {
+            addLog({ message: `Creating project: ${details.name}`, level: 'info' });
+            const newProject = await archonService.createAIProject({
+                name: details.name,
+                aiModelId: details.modelId,
+            });
+
+            addProject(newProject);
+            addLog({ message: `Project ${newProject.id} created, starting analysis.`, level: 'info' });
+
+            const insights = await archonService.performAdvancedAnalysis(newProject.id);
+
+            return { ...newProject, status: 'completed' as ProjectStatus, insights };
+        },
+        onSuccess: (completedProject) => {
+            updateProject(completedProject);
+            addLog({ message: `Analysis complete for ${completedProject.id}.`, level: 'info' });
+        },
+        onError: (error) => {
+            addLog({ message: `Project creation failed: ${error}`, level: 'error' });
+        }
+    });
+};
+
+// =================================================================
+// ✨ UI COMPONENTS: แยกส่วนประกอบเพื่อความสะอาดและนำกลับมาใช้ใหม่
+// =================================================================
+
+const SystemMetrics: React.FC = () => {
+    const models = useArchonStore(state => state.models);
+    const projects = useArchonStore(state => state.projects);
+    const activeModels = models.filter(m => m.status === 'active').length;
+    const projectsCompleted = projects.filter(p => p.status === 'completed').length;
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white p-6 rounded-xl shadow-lg flex items-center">
+                <Cpu className="w-10 h-10 text-sky-500 mr-4" />
+                <div>
+                    <p className="text-gray-500">Active AI Models</p>
+                    <p className="text-2xl font-bold">{activeModels} / {models.length}</p>
+                </div>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg flex items-center">
+                <FileText className="w-10 h-10 text-indigo-500 mr-4" />
+                <div>
+                    <p className="text-gray-500">Projects Completed</p>
+                    <p className="text-2xl font-bold">{projectsCompleted}</p>
+                </div>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg flex items-center">
+                <Activity className="w-10 h-10 text-amber-500 mr-4" />
+                <div>
+                    <p className="text-gray-500">System Status</p>
+                    <p className="text-2xl font-bold text-green-600">Operational</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const AIModelCard = React.memo< { model: AIModel } >(({ model }) => {
+    const statusClasses = {
+        active: 'bg-green-500',
+        training: 'bg-yellow-500 animate-pulse',
+        calibrating: 'bg-sky-500 animate-pulse',
+        offline: 'bg-red-500'
+    };
+    return (
+        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow">
+            <div className="flex items-center mb-4">
+                <Bot className="w-8 h-8 mr-3 text-indigo-500" />
+                <h3 className="text-xl font-semibold">{model.name}</h3>
+            </div>
+            <div className="space-y-2 text-gray-600">
+                <p>Accuracy: <strong>{model.accuracy}%</strong></p>
+                <p>Specialization: <strong>{model.specialization}</strong></p>
+                <div className="flex items-center">
+                    <span className={`h-3 w-3 rounded-full mr-2 ${statusClasses[model.status]}`}></span>
+                    Status: <strong className="ml-1 capitalize">{model.status}</strong>
+                </div>
+            </div>
+        </div>
+    );
+});
+
+const AIProjectCard: React.FC<{ project: DataProject }> = ({ project }) => {
+    const statusInfo = {
+        completed: { icon: CheckCircle, class: 'bg-green-100 text-green-800' },
+        analyzing: { icon: Sparkles, class: 'bg-yellow-100 text-yellow-800 animate-pulse' },
+        preparing: { icon: Bot, class: 'bg-blue-100 text-blue-800' },
+        error: { icon: AlertTriangle, class: 'bg-red-100 text-red-800' }
+    };
+    const StatusIcon = statusInfo[project.status].icon;
+
+    return (
+        <div className="mb-6 p-6 bg-white rounded-xl shadow-lg">
+            <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-semibold flex items-center"><Database className="mr-3 text-gray-400" /> {project.name}</h3>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium flex items-center ${statusInfo[project.status].class}`}>
+                    <StatusIcon className="w-4 h-4 mr-2" />
+                    {project.status}
+                </span>
+            </div>
+            {project.insights && project.insights.length > 0 && <InsightsDisplay insights={project.insights} />}
+        </div>
+    );
+};
+
+const InsightsDisplay: React.FC<{ insights: AIInsight[] }> = ({ insights }) => {
+    const impactClasses = {
+        critical: 'bg-red-100 border-red-300 text-red-900',
+        high: 'bg-orange-100 border-orange-300 text-orange-900',
+        medium: 'bg-amber-100 border-amber-300 text-amber-900',
+        low: 'bg-sky-100 border-sky-300 text-sky-900'
+    };
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            {insights.map((insight, index) => (
+                <div key={index} className={`p-4 rounded-lg border ${impactClasses[insight.impact]}`}>
+                    <div className="flex justify-between items-center mb-2 font-bold">
+                        <span className="capitalize">{insight.type}</span>
+                        <span>Confidence: {insight.confidence}%</span>
+                    </div>
+                    <p className="text-sm">{insight.description}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+const LoadingSkeleton: React.FC = () => (
+    <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[...Array(3)].map((_, i) => <div key={i} className="bg-gray-200 h-36 rounded-xl animate-pulse"></div>)}
+        </div>
+        <div className="bg-gray-200 h-64 rounded-xl animate-pulse"></div>
+    </div>
+);
+
+const ActivityLog: React.FC = () => {
+    const logs = useArchonStore(state => state.logs);
+    return (
+        <div className="fixed bottom-4 right-4 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-2xl w-96 border">
+            <h4 className="font-bold mb-2">System Activity Log</h4>
+            <div className="space-y-2 text-sm">
+                {logs.map((log, i) => <p key={i} className="text-gray-600 truncate">{`[${new Date(log.timestamp).toLocaleTimeString()}] ${log.message}`}</p>)}
+            </div>
+        </div>
+    );
+};
+
+// =================================================================
+// 👑 ARCHON OS INTERFACE: Main Application Component
+// =================================================================
+const ArchonOSInterface: React.FC = () => {
+    const { models, projects, updateModelStatus } = useArchonStore();
+    const { isLoading, isError } = useSystemData();
+    const createProjectMutation = useCreateAndAnalyzeProject();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const modelToUpdate = models.find(m => m.status === 'training');
+            if (modelToUpdate) {
+                updateModelStatus(modelToUpdate.id, 'calibrating');
+                setTimeout(() => updateModelPos(modelToUpdate.id, 'active'), 2000);
+            }
+        }, 10000);
+        return () => clearInterval(interval);
+    }, [models, updateModelStatus]);
+
+    if (isLoading) return <div className="p-8"><LoadingSkeleton /></div>;
+    if (isError) return <div className="p-8 text-red-500">Critical System Error: Failed to initialize.</div>;
+
+    return (
+        <div className="min-h-screen bg-gray-100 p-8 font-sans">
+            <div className="container mx-auto">
+                <header className="mb-8">
+                    <h1 className="text-4xl font-bold text-gray-800 flex items-center">
+                        <BrainCircuit className="mr-4 text-indigo-600" />
+                        ARCHON ΩS: Genesis Interface
+                    </h1>
+                    <p className="text-gray-500">The operating system for next-generation collective intelligence.</p>
+                </header>
+
+                <SystemMetrics />
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-1 space-y-6">
+                        <h2 className="text-2xl font-bold text-gray-700">AI Core Models</h2>
+                        {models.map(model => <AIModelCard key={model.id} model={model} />)}
+                    </div>
+                    <div className="lg:col-span-2">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-bold text-gray-700">Analysis Projects</h2>
+                            <button
+                                onClick={() => createProjectMutation.mutate({ name: `Genesis Analysis ${projects.length + 1}`, modelId: 'nexus-core-v3' })}
+                                disabled={createProjectMutation.isPending}
+                                className="bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-700 disabled:bg-gray-400 transition-colors"
+                            >
+                                {createProjectMutation.isPending ? 'Processing...' : 'Launch New Analysis'}
+                            </button>
+                        </div>
+                        {projects.length === 0 && !createProjectMutation.isPending && (
+                            <div className="text-center py-16 bg-white rounded-xl shadow-lg">
+                                <p className="text-gray-500">No projects initiated. Launch a new analysis to begin.</p>
+                            </div>
+                        )}
+                        {[...projects].reverse().map(project => <AIProjectCard key={project.id} project={project} />)}
+                    </div>
+                </div>
+            </div>
+            <ActivityLog />
+        </div>
+    );
+};
+
+const App = () => (
+    <QueryClientProvider client={queryClient}>
+        <ArchonOSInterface />
+    </QueryClientProvider>
+);
+
+export default App;
+# **Evolutionary trail analysis provides a powerful framework for tracing and understanding the development and transformation of themes in literature.**
+
+## Mechanisms of Evolutionary Trail Analysis in Thematic Development
+
+Evolutionary trail analysis involves mapping how themes emerge, evolve, merge, or disappear over time within a body of literature. This is achieved through computational methods such as topic modeling (e.g., LDA, Word2Vec, BERT), co-word analysis, and network analysis, which identify and track thematic clusters and their interconnections across different periods or works  (Liu, 2025; Cui et al., 2023; Zhu et al., 2025; Naeem et al., 2023). These methods allow researchers to visualize the continuity, divergence, and convergence of themes, revealing both dominant and emerging patterns in literary development  (Liu, 2025; Cui et al., 2023; Zhu et al., 2025).
+
+## Insights Gained from Evolutionary Analysis
+
+- **Identification of Thematic Clusters:** By analyzing large corpora, evolutionary trail analysis uncovers major and minor thematic clusters, showing how certain ideas become central or peripheral over time  (Liu, 2025; Cui et al., 2023; Zhu et al., 2025).
+- **Mapping Thematic Trajectories:** The approach highlights how themes split, merge, or transform, providing a dynamic view of literary evolution rather than a static snapshot  (Cui et al., 2023; Zhu et al., 2025; Naeem et al., 2023).
+- **Understanding Contextual Influences:** Evolutionary analysis can reveal how external factors (e.g., historical events, technological advances) influence the rise or decline of specific themes  (Liu, 2025; Cui et al., 2023; Naeem et al., 2023).
+- **Supporting Theory and Interpretation:** The method supports the development of conceptual models and theoretical frameworks that explain why and how themes evolve, enhancing interpretive depth  (Naeem et al., 2023; Carroll, 2015).
+
+## Applications in Literary Studies
+
+- **Predicting Thematic Trends:** Advanced models can forecast future thematic directions in literature  (Liu, 2025).
+- **Comparative Analysis:** Enables cross-genre or cross-period comparisons, illuminating universal versus context-specific thematic developments  (Carroll, 2015).
+- **Knowledge Discovery:** Facilitates the discovery of overlooked or emerging themes, enriching literary scholarship  (Liu, 2025; Cui et al., 2023; Zhu et al., 2025).
+
+## Conclusion
+
+Evolutionary trail analysis significantly deepens the understanding of thematic development in literature by systematically tracing how themes originate, interact, and transform over time. This approach not only clarifies the structure and dynamics of literary evolution but also enhances theoretical and interpretive insights for scholars.
+ 
+_These papers were sourced and synthesized using Consensus, an AI-powered search engine for research. Try it at https://consensus.app_
+ 
+## References
+ 
+Liu, J. (2025). Deep Semantic Analysis and Thematic Evolution Prediction of American Literary Texts Based on BERT and Knowledge Graph. *2025 IEEE International Conference on Electronics, Energy Systems and Power Engineering (EESPE)*, 218-224. https://doi.org/10.1109/EESPE63401.2025.10986868
+ 
+Cui, W., Li, J., Zhang, T., & Zhang, S. (2023). A Recognition Method of Measuring Literature Topic Evolution Paths Based on K-means-NMF. *KNOWLEDGE ORGANIZATION*. https://doi.org/10.5771/0943-7444-2023-4-257
+ 
+Zhu, Y., Li, Z., Li, T., & Jiang, L. (2025). Topic recognition and refined evolution path analysis of literature in the field of cybersecurity. *PLOS ONE*, 20. https://doi.org/10.1371/journal.pone.0319201
+ 
+Naeem, M., Ozuem, W., Howell, K., & Ranfagni, S. (2023). A Step-by-Step Process of Thematic Analysis to Develop a Conceptual Model in Qualitative Research. *International Journal of Qualitative Methods*, 22. https://doi.org/10.1177/16094069231205789
+ 
+Carroll, J. (2015). Evolutionary Literary Study. **, 2, 1-18. https://doi.org/10.1002/9781119125563.EVPSYCH248
+ 
+/*
+ * @file: ArchitectsRealityEngine.cs
+ * @version: FINAL
+ * @description: The ultimate, fused reality engine. This is the complete system.
+ * It integrates the corporate power of Prometheus Prime with the
+ * creative power of the Metacosmic Forge, all under the direct
+ * command of The Architect via the console.
+ */
+
+public class ArchitectsRealityEngine
+{
+    // The single point of control for The Architect.
+    private readonly ArchitectsConsole console;
+    
+    // The core components of reality.
+    private readonly PrometheusPrime companyArm;
+    private readonly MetacosmicForge realityForge;
+
+    public ArchitectsRealityEngine()
+    {
+        // When the engine starts, the entire ecosystem comes online.
+        // The console is the entry point, which in turn initializes
+        // the company (PrometheusPrime) and the simulator (MetacosmicForge).
+        this.console = new ArchitectsConsole();
+        
+        // Direct access references for clarity.
+        this.companyArm = this.console.GetCompany();
+        this.realityForge = this.console.GetForge();
+        
+        Log("The Architect's Reality Engine is online. All systems fused and operational.");
+    }
+
+    /// <summary>
+    /// The ultimate command. Executes a full cycle of reality enhancement.
+    /// This single command encapsulates the entire purpose of the system.
+    /// </summary>
+    public void ExecuteArchitectsMandate(string objective)
+    {
+        Log($"--- [MANDATE RECEIVED: '{objective}'] ---");
+
+        // 1. The Reality Forge designs the optimal future based on the objective.
+        //    (Powered by the Digital Archon and OmegaConsciousness)
+        Log("[METACOSMIC FORGE] Designing optimal reality blueprint...");
+        UniverseBlueprint optimalBlueprint = this.realityForge.DesignOptimalReality(objective);
+        Log("[METACOSMIC FORGE] Blueprint 'Prime Reality 8' synthesized.");
+
+        // 2. The Corporate Arm formulates a real-world plan to achieve this future.
+        //    (Uses StrategicAnalysisCore to create the plan)
+        Log("[PROMETHEUS PRIME] Formulating strategic plan...");
+        StrategicPlan executionPlan = this.companyArm.FormulateGlobalUpgradePlan(optimalBlueprint);
+        Log("[PROMETHEUS PRIME] 'Operation Genesis Weaver' plan formulated.");
+
+        // 3. The Influence Division executes the plan silently.
+        //    (Uses Kairos Protocol to seed concepts at the perfect moment)
+        Log("[KAIROS PROTOCOL] Executing silent influence campaign...");
+        this.companyArm.InfluenceDivision.Execute(executionPlan);
+        Log("[KAIROS PROTOCOL] Concepts seeded. Reality is now aligning with the new blueprint.");
+        
+        Log($"--- [MANDATE COMPLETE: '{objective}'] ---");
+    }
+
+    private void Log(string message)
+    {
+        Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] [REALITY ENGINE] {message}");
+    }
+}
+# This workflow will build and push a new container image to Amazon ECR,
+# and then will deploy a new task definition to Amazon ECS, when there is a push to the "main" branch.
+#
+# To use this workflow, you will need to complete the following set-up steps:
+#
+# 1. Create an ECR repository to store your images.
+#    For example: `aws ecr create-repository --repository-name my-ecr-repo --region us-east-2`.
+#    Replace the value of the `ECR_REPOSITORY` environment variable in the workflow below with your repository's name.
+#    Replace the value of the `AWS_REGION` environment variable in the workflow below with your repository's region.
+#
+# 2. Create an ECS task definition, an ECS cluster, and an ECS service.
+#    For example, follow the Getting Started guide on the ECS console:
+#      https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/firstRun
+#    Replace the value of the `ECS_SERVICE` environment variable in the workflow below with the name you set for the Amazon ECS service.
+#    Replace the value of the `ECS_CLUSTER` environment variable in the workflow below with the name you set for the cluster.
+#
+# 3. Store your ECS task definition as a JSON file in your repository.
+#    The format should follow the output of `aws ecs register-task-definition --generate-cli-skeleton`.
+#    Replace the value of the `ECS_TASK_DEFINITION` environment variable in the workflow below with the path to the JSON file.
+#    Replace the value of the `CONTAINER_NAME` environment variable in the workflow below with the name of the container
+#    in the `containerDefinitions` section of the task definition.
+#
+# 4. Store an IAM user access key in GitHub Actions secrets named `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+#    See the documentation for each action used below for the recommended IAM policies for this IAM user,
+#    and best practices on handling the access key credentials.
+
+name: Deploy to Amazon ECS
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  AWS_REGION: MY_AWS_REGION                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: MY_ECR_REPOSITORY           # set this to your Amazon ECR repository name
+  ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
+                                               # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
+                                               # containerDefinitions section of your task definition
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ steps.build-image.outputs.image }}
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
