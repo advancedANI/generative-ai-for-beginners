@@ -1,46 +1,57 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "00f2643fec1571acc5d38cc1a3b972d5",
-  "translation_date": "2025-07-09T07:12:56+00:00",
+  "original_hash": "f1413b349a65b4e9eda3f48807656a6d",
+  "translation_date": "2025-08-26T17:58:22+00:00",
   "source_file": "00-course-setup/README.md",
   "language_code": "he"
 }
 -->
-# התחלה עם הקורס הזה
+# מתחילים עם הקורס הזה
 
-אנחנו מאוד מתרגשים שאתה מתחיל את הקורס הזה ומגלים מה תתלהב לבנות עם Generative AI!
+אנחנו מאוד מתרגשים שתתחיל את הקורס הזה ונראה לאן תגיע עם ההשראה שלך לבנות בעזרת בינה מלאכותית גנרטיבית!
 
-כדי להבטיח את ההצלחה שלך, עמוד זה מפרט את שלבי ההתקנה, הדרישות הטכניות, ואיפה לקבל עזרה במידת הצורך.
+כדי להבטיח את ההצלחה שלך, עמוד זה מסביר את שלבי ההגדרה, הדרישות הטכניות, ואיפה אפשר לקבל עזרה במידת הצורך.
 
-## שלבי התקנה
+## שלבי הגדרה
 
-כדי להתחיל ללמוד את הקורס, תצטרך להשלים את השלבים הבאים.
+כדי להתחיל את הקורס, תצטרך להשלים את השלבים הבאים.
 
-### 1. יצירת Fork לריפוזיטורי הזה
+### 1. עשה Fork לריפוזיטורי הזה
 
-[צור Fork לכל הריפוזיטורי הזה](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) לחשבון ה-GitHub שלך כדי שתוכל לשנות כל קוד ולהשלים את האתגרים. בנוסף, תוכל גם [להוסיף כוכב (🌟) לריפוזיטורי הזה](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) כדי למצוא אותו ואת הריפוזיטוריים הקשורים בקלות רבה יותר.
+[בצע Fork לכל הריפוזיטורי](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) לחשבון ה-GitHub שלך כדי שתוכל לשנות קוד ולהשלים את האתגרים. אפשר גם [לסמן בכוכב (🌟) את הריפוזיטורי](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) כדי למצוא אותו וריפוזיטוריז קשורים בקלות.
 
-### 2. יצירת Codespace
+### 2. צור Codespace
 
-כדי למנוע בעיות תלות בעת הרצת הקוד, אנו ממליצים להריץ את הקורס הזה ב-[GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst).
+כדי להימנע מבעיות תלויות בהרצת הקוד, אנחנו ממליצים להריץ את הקורס הזה ב-[GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst).
 
-ניתן ליצור זאת על ידי בחירת אפשרות `Code` בגרסה שלך של הריפוזיטורי ולבחור באפשרות **Codespaces**.
+ב-Fork שלך: **Code -> Codespaces -> New on main**
 
-![דיאלוג המציג כפתורים ליצירת codespace](../../../00-course-setup/images/who-will-pay.webp)
+![דיאלוג שמראה כפתורים ליצירת Codespace](../../../00-course-setup/images/who-will-pay.webp)
 
-### 3. אחסון מפתחות ה-API שלך
+#### 2.1 הוסף Secret
 
-שמירה על מפתחות ה-API שלך בטוחים ומוגנים היא חשובה כשבונים כל סוג של אפליקציה. אנו ממליצים לא לאחסן מפתחות API ישירות בקוד שלך. העלאת פרטים אלה לריפוזיטורי ציבורי עלולה לגרום לבעיות אבטחה ואפילו לעלויות לא רצויות אם ייעשה בהם שימוש על ידי גורם זדוני.  
-הנה מדריך שלב-אחר-שלב כיצד ליצור קובץ `.env` לפייתון ולהוסיף את `GITHUB_TOKEN`:
+1. ⚙️ אייקון גלגל שיניים -> Command Pallete-> Codespaces : Manage user secret -> Add a new secret.
+2. תן שם OPENAI_API_KEY, הדבק את המפתח שלך, ושמור.
 
-1. **נווט לתיקיית הפרויקט שלך**: פתח את הטרמינל או שורת הפקודה ונווט לתיקיית השורש של הפרויקט שלך שבה תרצה ליצור את קובץ ה-`.env`.
+### 3. מה הלאה?
 
-   ```bash
-   cd path/to/your/project
-   ```
+| אני רוצה…           | עבור אל…                                                                 |
+|---------------------|-------------------------------------------------------------------------|
+| להתחיל שיעור 1      | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
+| לעבוד לא מקוון      | [`setup-local.md`](02-setup-local.md)                                   |
+| להגדיר ספק LLM      | [`providers.md`](providers.md)                                          |
+| להכיר לומדים נוספים | [הצטרף ל-Discord שלנו](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
 
-2. **צור את קובץ ה-`.env`**: השתמש בעורך הטקסט המועדף עליך כדי ליצור קובץ חדש בשם `.env`. אם אתה עובד בשורת הפקודה, תוכל להשתמש בפקודת `touch` (במערכות מבוססות יוניקס) או `echo` (בווינדוס):
+## פתרון תקלות
+
+| סימפטום                                   | פתרון                                                           |
+|-------------------------------------------|-----------------------------------------------------------------|
+| בניית הקונטיינר נתקעה ליותר מ-10 דקות     | **Codespaces ➜ “Rebuild Container”**                            |
+| `python: command not found`               | הטרמינל לא התחבר; לחץ **+** ➜ *bash*                           |
+| `401 Unauthorized` מ-OpenAI               | `OPENAI_API_KEY` שגוי או שפג תוקפו                              |
+| VS Code מציג “Dev container mounting…”    | רענן את לשונית הדפדפן—Codespaces לפעמים מאבד חיבור              |
+| חסר Kernel במחברת                         | תפריט המחברת ➜ **Kernel ▸ Select Kernel ▸ Python 3**            |
 
    מערכות מבוססות יוניקס:
 
@@ -48,13 +59,13 @@ CO_OP_TRANSLATOR_METADATA:
    touch .env
    ```
 
-   ווינדוס:
+   Windows:
 
    ```cmd
    echo . > .env
    ```
 
-3. **ערוך את קובץ ה-`.env`**: פתח את קובץ ה-`.env` בעורך טקסט (למשל VS Code, Notepad++ או כל עורך אחר). הוסף את השורה הבאה לקובץ, כשהחלף את `your_github_token_here` במפתח GitHub האמיתי שלך:
+3. **ערוך את קובץ `.env`**: פתח את קובץ ה-`.env` בעורך טקסט (למשל VS Code, Notepad++, או כל עורך אחר). הוסף את השורה הבאה לקובץ, והחלף את `your_github_token_here` בטוקן ה-GitHub שלך:
 
    ```env
    GITHUB_TOKEN=your_github_token_here
@@ -62,13 +73,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 4. **שמור את הקובץ**: שמור את השינויים וסגור את עורך הטקסט.
 
-5. **התקן את `python-dotenv`**: אם עדיין לא התקנת, תצטרך להתקין את חבילת `python-dotenv` כדי לטעון משתני סביבה מקובץ ה-`.env` לאפליקציית הפייתון שלך. ניתן להתקין באמצעות `pip`:
+5. **התקן את `python-dotenv`**: אם עדיין לא עשית זאת, תצטרך להתקין את החבילה `python-dotenv` כדי לטעון משתני סביבה מקובץ ה-`.env` לאפליקציית הפייתון שלך. אפשר להתקין בעזרת `pip`:
 
    ```bash
    pip install python-dotenv
    ```
 
-6. **טען משתני סביבה בסקריפט הפייתון שלך**: בסקריפט הפייתון שלך, השתמש בחבילת `python-dotenv` כדי לטעון את משתני הסביבה מקובץ ה-`.env`:
+6. **טען משתני סביבה בסקריפט פייתון שלך**: בסקריפט שלך, השתמש ב-`python-dotenv` כדי לטעון את משתני הסביבה מקובץ ה-`.env`:
 
    ```python
    from dotenv import load_dotenv
@@ -83,33 +94,33 @@ CO_OP_TRANSLATOR_METADATA:
    print(github_token)
    ```
 
-זהו! יצרת בהצלחה קובץ `.env`, הוספת את מפתח ה-GitHub שלך וטעונת אותו לאפליקציית הפייתון שלך.
+וזהו! יצרת בהצלחה קובץ `.env`, הוספת את טוקן ה-GitHub שלך, וטעינת אותו לאפליקציית הפייתון שלך.
 
-## איך להריץ מקומית במחשב שלך
+## איך להריץ מקומית על המחשב שלך
 
-כדי להריץ את הקוד מקומית במחשב שלך, תצטרך שיהיה מותקן אצלך [Python](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
+כדי להריץ את הקוד מקומית על המחשב, תצטרך שתהיה מותקנת אצלך איזושהי גרסה של [פייתון](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
 
-כדי להשתמש בריפוזיטורי, תצטרך לשכפל אותו:
+כדי להשתמש בריפוזיטורי, עליך לשכפל אותו:
 
 ```shell
 git clone https://github.com/microsoft/generative-ai-for-beginners
 cd generative-ai-for-beginners
 ```
 
-לאחר שיש לך את כל הקבצים, תוכל להתחיל!
+לאחר ששכפלת הכל, אפשר להתחיל!
 
 ## שלבים אופציונליים
 
 ### התקנת Miniconda
 
-[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) הוא מתקין קל משקל להתקנת [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), פייתון, וכמה חבילות נוספות.  
-Conda היא מנהל חבילות שמקל על ההתקנה והמעבר בין [סביבות וירטואליות](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) שונות של פייתון וחבילות. היא גם שימושית להתקנת חבילות שאינן זמינות דרך `pip`.
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) הוא מתקין קל להתקנת [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), פייתון, וכמה חבילות נוספות.
+Conda עצמו הוא מנהל חבילות שמקל להגדיר ולעבור בין [**סביבות וירטואליות**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) שונות של פייתון וחבילות. הוא גם שימושי להתקנת חבילות שלא זמינות דרך `pip`.
 
-תוכל לעקוב אחרי [מדריך ההתקנה של MiniConda](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) כדי להגדיר זאת.
+אפשר לעקוב אחרי [מדריך ההתקנה של MiniConda](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) כדי להגדיר אותו.
 
-לאחר התקנת Miniconda, תצטרך לשכפל את [הריפוזיטורי](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) (אם עדיין לא עשית זאת).
+לאחר התקנת Miniconda, יש לשכפל את [הריפוזיטורי](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) (אם עדיין לא עשית זאת).
 
-לאחר מכן, תצטרך ליצור סביבה וירטואלית. כדי לעשות זאת עם Conda, צור קובץ סביבה חדש (_environment.yml_). אם אתה עובד עם Codespaces, צור אותו בתוך תיקיית `.devcontainer`, כלומר `.devcontainer/environment.yml`.
+השלב הבא הוא ליצור סביבה וירטואלית. כדי לעשות זאת עם Conda, צור קובץ סביבה חדש (_environment.yml_). אם אתה עובד עם Codespaces, צור אותו בתוך תיקיית `.devcontainer`, כלומר `.devcontainer/environment.yml`.
 
 מלא את קובץ הסביבה שלך עם הקטע הבא:
 
@@ -127,38 +138,38 @@ dependencies:
       - azure-ai-ml
 ```
 
-אם אתה נתקל בשגיאות בשימוש ב-conda, תוכל להתקין ידנית את ספריות ה-Microsoft AI באמצעות הפקודה הבאה בטרמינל.
+אם אתה נתקל בשגיאות עם conda, אפשר להתקין ידנית את ספריות ה-AI של מיקרוסופט בעזרת הפקודה הבאה בטרמינל.
 
 ```
 conda install -c microsoft azure-ai-ml
 ```
 
-קובץ הסביבה מגדיר את התלויות הדרושות לנו. `<environment-name>` מתייחס לשם שתרצה לתת לסביבת ה-Conda שלך, ו-`<python-version>` היא גרסת הפייתון שברצונך להשתמש בה, לדוגמה, `3` היא הגרסה העיקרית האחרונה של פייתון.
+קובץ הסביבה מגדיר את התלויות הנדרשות. `<environment-name>` הוא שם הסביבה שתרצה, ו-`<python-version>` היא גרסת הפייתון, לדוג' `3` היא הגרסה העדכנית ביותר.
 
-לאחר מכן, תוכל ליצור את סביבת ה-Conda שלך על ידי הרצת הפקודות הבאות בשורת הפקודה/טרמינל:
+לאחר מכן, תוכל ליצור את סביבת ה-Conda שלך על ידי הרצת הפקודות הבאות בטרמינל/שורת הפקודה:
 
 ```bash
 conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer sub path applies to only Codespace setups
 conda activate ai4beg
 ```
 
-אם תיתקל בבעיות, עיין ב-[מדריך סביבות Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst).
+אם נתקלת בבעיות, עיין ב-[מדריך סביבות Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst).
 
-### שימוש ב-Visual Studio Code עם תוסף התמיכה בפייתון
+### שימוש ב-Visual Studio Code עם תוסף תמיכה בפייתון
 
-אנו ממליצים להשתמש בעורך [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) עם [תוסף התמיכה בפייתון](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) מותקן עבור הקורס הזה. עם זאת, זו המלצה בלבד ולא דרישה מחייבת.
+אנו ממליצים להשתמש בעורך [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) עם [תוסף תמיכה בפייתון](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) עבור הקורס הזה. זו המלצה בלבד ולא דרישה מחייבת.
 
-> **הערה**: בעת פתיחת ריפוזיטורי הקורס ב-VS Code, יש לך אפשרות להגדיר את הפרויקט בתוך מכולה (container). זאת בזכות תיקיית ה-[`.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) המיוחדת שנמצאת בריפוזיטורי הקורס. נרחיב על כך בהמשך.
+> **הערה**: כאשר תפתח את ריפוזיטור הקורס ב-VS Code, תוכל להגדיר את הפרויקט בתוך קונטיינר. זה מתאפשר בזכות תיקיית [`.devcontainer` המיוחדת](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) שנמצאת בריפוזיטורי. עוד על כך בהמשך.
 
-> **הערה**: לאחר ששכפלת ופתחת את התיקייה ב-VS Code, הוא יציע אוטומטית להתקין את תוסף התמיכה בפייתון.
+> **הערה**: לאחר שתשכפל ותפתח את התיקייה ב-VS Code, הוא יציע לך אוטומטית להתקין את תוסף הפייתון.
 
-> **הערה**: אם VS Code מציע לפתוח מחדש את הריפוזיטורי בתוך מכולה, סרב לבקשה זו כדי להשתמש בגרסת הפייתון המותקנת מקומית.
+> **הערה**: אם VS Code מציע לפתוח את הריפוזיטורי בקונטיינר, דחה את הבקשה כדי להשתמש בגרסת הפייתון המקומית שלך.
 
 ### שימוש ב-Jupyter בדפדפן
 
-ניתן גם לעבוד על הפרויקט באמצעות סביבת [Jupyter](https://jupyter.org?WT.mc_id=academic-105485-koreyst) ישירות בדפדפן שלך. גם Jupyter הקלאסי וגם [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) מספקים סביבת פיתוח נוחה עם תכונות כמו השלמה אוטומטית, הדגשת קוד ועוד.
+אפשר גם לעבוד על הפרויקט בסביבת [Jupyter](https://jupyter.org?WT.mc_id=academic-105485-koreyst) ישירות בדפדפן. גם Jupyter הקלאסי וגם [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) מספקים סביבת פיתוח נוחה עם השלמה אוטומטית, הדגשת קוד ועוד.
 
-כדי להפעיל Jupyter מקומית, עבור לטרמינל/שורת הפקודה, נווט לתיקיית הקורס, והריץ:
+כדי להפעיל Jupyter מקומית, עבור לטרמינל/שורת הפקודה, נווט לתיקיית הקורס, והרץ:
 
 ```bash
 jupyter notebook
@@ -170,57 +181,60 @@ jupyter notebook
 jupyterhub
 ```
 
-זה יפעיל מופע Jupyter וכתובת ה-URL לגישה אליו תוצג בחלון שורת הפקודה.
+זה יפעיל מופע של Jupyter וה-URL לגישה יוצג בחלון שורת הפקודה.
 
-כשתיגש לכתובת ה-URL, תראה את מתווה הקורס ותוכל לנווט לכל קובץ `*.ipynb`. לדוגמה, `08-building-search-applications/python/oai-solution.ipynb`.
+לאחר שתיגש ל-URL, תראה את מבנה הקורס ותוכל לנווט לכל קובץ `*.ipynb`. לדוג', `08-building-search-applications/python/oai-solution.ipynb`.
 
-### הרצה בתוך מכולה (container)
+### הרצה בקונטיינר
 
-חלופה להגדרת הכל במחשב שלך או ב-Codespace היא שימוש ב-[מכולה](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>). תיקיית ה-`.devcontainer` המיוחדת בריפוזיטורי הקורס מאפשרת ל-VS Code להגדיר את הפרויקט בתוך מכולה. מחוץ ל-Codespaces, זה ידרוש התקנת Docker, ובאופן כללי מדובר בעבודה מסוימת, לכן אנו ממליצים על כך רק למי שיש לו ניסיון בעבודה עם מכולות.
+אפשרות נוספת היא להשתמש ב-[קונטיינר](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>) במקום להגדיר הכל על המחשב או ב-Codespace. תיקיית `.devcontainer` המיוחדת בריפוזיטורי מאפשרת ל-VS Code להגדיר את הפרויקט בתוך קונטיינר. מחוץ ל-Codespaces, זה דורש התקנת Docker, וזה מעט מורכב, לכן אנו ממליצים על כך רק למי שיש ניסיון עם קונטיינרים.
 
-אחת הדרכים הטובות ביותר לשמור על מפתחות ה-API שלך בטוחים בעת שימוש ב-GitHub Codespaces היא באמצעות Codespace Secrets. אנא עקוב אחרי מדריך [ניהול סודות ב-Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) כדי ללמוד עוד על כך.
+אחת הדרכים הטובות ביותר לשמור על מפתחות ה-API שלך מאובטחים ב-GitHub Codespaces היא שימוש ב-Codespace Secrets. עקוב אחרי [מדריך ניהול הסודות של Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) למידע נוסף.
 
 ## שיעורים ודרישות טכניות
 
 הקורס כולל 6 שיעורי מושג ו-6 שיעורי קידוד.
 
-בשיעורי הקידוד אנו משתמשים בשירות Azure OpenAI. תצטרך גישה לשירות Azure OpenAI ומפתח API כדי להריץ את הקוד. ניתן להגיש בקשה לקבלת גישה על ידי [מילוי טופס זה](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst).
+בשיעורי הקידוד אנו משתמשים ב-Azure OpenAI Service. תצטרך גישה לשירות Azure OpenAI ומפתח API כדי להריץ את הקוד. אפשר להגיש בקשה לגישה על ידי [מילוי טופס זה](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst).
 
-בזמן שאתה ממתין לעיבוד הבקשה שלך, כל שיעור קידוד כולל גם קובץ `README.md` שבו תוכל לצפות בקוד ובפלטים.
+בזמן ההמתנה לאישור הבקשה, בכל שיעור קידוד יש גם קובץ `README.md` בו תוכל לצפות בקוד ובפלטים.
 
-## שימוש בשירות Azure OpenAI בפעם הראשונה
+## שימוש ב-Azure OpenAI Service בפעם הראשונה
 
-אם זו הפעם הראשונה שלך בעבודה עם שירות Azure OpenAI, אנא עקוב אחרי המדריך כיצד [ליצור ולפרוס משאב שירות Azure OpenAI.](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst)
+אם זו הפעם הראשונה שלך עם Azure OpenAI, עקוב אחרי המדריך ל-[יצירה ופריסה של משאב Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst).
 
 ## שימוש ב-OpenAI API בפעם הראשונה
 
-אם זו הפעם הראשונה שלך בעבודה עם OpenAI API, אנא עקוב אחרי המדריך כיצד [ליצור ולהשתמש בממשק.](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst)
+אם זו הפעם הראשונה שלך עם OpenAI API, עקוב אחרי המדריך ל-[יצירה ושימוש בממשק](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst).
 
-## הכירו לומדים אחרים
+## להכיר לומדים נוספים
 
-יצרנו ערוצים בשרת ה-[Discord הרשמי של קהילת ה-AI שלנו](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) כדי להכיר לומדים אחרים. זו דרך מצוינת ליצור קשר עם יזמים, בוני פרויקטים, סטודנטים וכל מי שמעוניין להתקדם בתחום ה-Generative AI.
+יצרנו ערוצים בשרת ה-Discord הרשמי של קהילת ה-AI שלנו [AI Community Discord server](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) כדי להכיר לומדים נוספים. זו דרך נהדרת להכיר יזמים, בונים, סטודנטים וכל מי שרוצה להתקדם בבינה מלאכותית גנרטיבית.
 
-[![הצטרף לערוץ דיסקורד](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
+[![הצטרף לערוץ הדיסקורד](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
 
-צוות הפרויקט יהיה גם הוא בשרת דיסקורד זה כדי לסייע לכל הלומדים.
+צוות הפרויקט יהיה גם הוא בשרת הזה כדי לעזור ללומדים.
 
 ## תרומה
 
-הקורס הזה הוא יוזמה בקוד פתוח. אם אתה רואה תחומים לשיפור או בעיות, אנא צור [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) או דווח על [בעיה ב-GitHub](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst).
+הקורס הזה הוא יוזמה בקוד פתוח. אם אתה רואה מקום לשיפור או בעיות, צור [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) או דווח על [בעיה ב-GitHub](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst).
 
-צוות הפרויקט יעקוב אחרי כל התרומות. תרומה לקוד פתוח היא דרך נהדרת לבנות את הקריירה שלך ב-Generative AI.
+צוות הפרויקט יעקוב אחרי כל התרומות. תרומה לקוד פתוח היא דרך נהדרת לבנות קריירה בבינה מלאכותית גנרטיבית.
 
-רוב התרומות מחייבות הסכמה להסכם רישיון תורם (CLA) המצהיר שיש לך את הזכות, ושאתה מעניק לנו את הזכויות להשתמש בתרומתך. לפרטים, בקר ב-[אתר הסכם הרישיון לתורמים (CLA)](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst).
+רוב התרומות דורשות ממך להסכים ל-CLA (הסכם רישיון תורם) שמצהיר שיש לך את הזכות להעניק לנו את הזכויות להשתמש בתרומתך. לפרטים, בקר ב-[אתר CLA, Contributor License Agreement](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst).
 
-חשוב: בעת תרגום טקסט בריפוזיטורי זה, ודא שאינך משתמש בתרגום מכונה. נבדוק את התרגומים דרך הקהילה, לכן אנא התנדב לתרגום רק בשפות שבהן אתה שולט.
+חשוב: כאשר אתה מתרגם טקסט בריפוזיטורי הזה, ודא שאינך משתמש בתרגום מכונה. נבדוק את התרגומים דרך הקהילה, אז אנא התנדב רק לשפות שאתה שולט בהן היטב.
 
-כאשר תגיש Pull Request, בוט CLA יזהה אוטומטית אם עליך לספק CLA ויעניק תגיות מתאימות ל-PR (כגון תווית, תגובה). פשוט עקוב אחר ההוראות של הבוט. תצטרך לעשות זאת רק פעם אחת בכל הריפוזיטוריים המשתמשים ב-CLA שלנו.
+כשאתה מגיש Pull Request, בוט ה-CLA יבדוק אוטומטית אם עליך לחתום על ההסכם ויוסיף תווית/תגובה בהתאם. פשוט עקוב אחרי ההוראות של הבוט. תצטרך לעשות זאת רק פעם אחת לכל הריפוזיטוריז שמשתמשים ב-CLA שלנו.
 
-פרויקט זה אימץ את [קוד ההתנהגות של מיקרוסופט לקוד פתוח](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst). למידע נוסף קרא את שאלות נפוצות על קוד ההתנהגות או פנה ל-[דוא"ל opencode](opencode@microsoft.com) עם שאלות או הערות נוספות.
+הפרויקט הזה מאמץ את [קוד ההתנהגות של קוד פתוח של מיקרוסופט](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst). למידע נוסף קרא את ה-FAQ של קוד ההתנהגות או פנה ל-[Email opencode](opencode@microsoft.com) עם שאלות או הערות.
 
 ## בואו נתחיל
+עכשיו כשסיימת את השלבים הנדרשים להשלמת הקורס, בוא נתחיל עם [היכרות עם בינה מלאכותית גנרטיבית ו-LLMs](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst).
 
-כעת, לאחר שסיימת את השלבים הנדרשים להשלמת הקורס, בוא נתחיל עם [הקדמה ל-Generative AI ול-LLMs](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst).
+---
 
-**כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. המסמך המקורי בשפת המקור שלו נחשב למקור הסמכותי. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי אדם. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+Certainly! Here is your requested translation to Hebrew:
+
+**הצהרת אחריות**:  
+מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש להיות מודעים לכך שתרגומים אוטומטיים עשויים להכיל שגיאות או אי-דיוקים. יש לראות במסמך המקורי בשפתו המקורית כמקור הסמכותי. למידע קריטי, מומלץ לפנות לתרגום מקצועי על ידי אדם. איננו אחראים לכל אי-הבנות או פירושים שגויים הנובעים מהשימוש בתרגום זה.

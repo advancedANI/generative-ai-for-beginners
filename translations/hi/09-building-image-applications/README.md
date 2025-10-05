@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "1a7fd0f95f9eb673b79da47c0814f4d4",
-  "translation_date": "2025-07-09T13:20:09+00:00",
+  "original_hash": "063a2ac57d6b71bea0eaa880c68770d2",
+  "translation_date": "2025-09-29T21:34:39+00:00",
   "source_file": "09-building-image-applications/README.md",
   "language_code": "hi"
 }
@@ -11,92 +11,100 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![इमेज जनरेशन एप्लिकेशन बनाना](../../../translated_images/09-lesson-banner.906e408c741f44112ff5da17492a30d3872abb52b8530d6506c2631e86e704d0.hi.png)](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)
 
-LLM केवल टेक्स्ट जनरेशन तक सीमित नहीं हैं। टेक्स्ट विवरणों से इमेज भी बनाई जा सकती हैं। इमेज एक माध्यम के रूप में कई क्षेत्रों में बेहद उपयोगी हो सकती हैं, जैसे MedTech, वास्तुकला, पर्यटन, गेम डेवलपमेंट और भी बहुत कुछ। इस अध्याय में, हम दो सबसे लोकप्रिय इमेज जनरेशन मॉडल, DALL-E और Midjourney के बारे में जानेंगे।
+LLMs केवल टेक्स्ट जनरेशन तक ही सीमित नहीं हैं। टेक्स्ट विवरणों से इमेज बनाना भी संभव है। इमेज को एक माध्यम के रूप में उपयोग करना कई क्षेत्रों में अत्यधिक उपयोगी हो सकता है, जैसे मेडटेक, आर्किटेक्चर, पर्यटन, गेम डेवलपमेंट और अन्य। इस अध्याय में, हम दो सबसे लोकप्रिय इमेज जनरेशन मॉडल, DALL-E और Midjourney के बारे में जानेंगे।
 
 ## परिचय
 
 इस पाठ में, हम निम्नलिखित विषयों को कवर करेंगे:
 
-- इमेज जनरेशन क्या है और यह क्यों उपयोगी है।
-- DALL-E और Midjourney क्या हैं, और ये कैसे काम करते हैं।
-- आप एक इमेज जनरेशन ऐप कैसे बना सकते हैं।
+- इमेज जनरेशन और इसका महत्व।
+- DALL-E और Midjourney, ये क्या हैं और कैसे काम करते हैं।
+- इमेज जनरेशन ऐप कैसे बनाया जाए।
 
 ## सीखने के लक्ष्य
 
-इस पाठ को पूरा करने के बाद, आप सक्षम होंगे:
+इस पाठ को पूरा करने के बाद, आप:
 
-- एक इमेज जनरेशन एप्लिकेशन बनाना।
-- मेटा प्रॉम्प्ट्स के साथ अपने एप्लिकेशन की सीमाएं निर्धारित करना।
-- DALL-E और Midjourney के साथ काम करना।
+- एक इमेज जनरेशन एप्लिकेशन बना सकेंगे।
+- अपने एप्लिकेशन के लिए मेटा प्रॉम्प्ट्स के साथ सीमाएं परिभाषित कर सकेंगे।
+- DALL-E और Midjourney के साथ काम कर सकेंगे।
 
 ## इमेज जनरेशन एप्लिकेशन क्यों बनाएं?
 
-इमेज जनरेशन एप्लिकेशन जनरेटिव AI की क्षमताओं को समझने का एक शानदार तरीका हैं। इन्हें निम्नलिखित के लिए इस्तेमाल किया जा सकता है:
+इमेज जनरेशन एप्लिकेशन जनरेटिव AI की क्षमताओं का पता लगाने का एक शानदार तरीका है। इन्हें निम्नलिखित उद्देश्यों के लिए उपयोग किया जा सकता है:
 
 - **इमेज एडिटिंग और सिंथेसिस**। आप विभिन्न उपयोग मामलों के लिए इमेज बना सकते हैं, जैसे इमेज एडिटिंग और इमेज सिंथेसिस।
 
-- **विभिन्न उद्योगों में उपयोग**। इन्हें Medtech, पर्यटन, गेम डेवलपमेंट जैसे कई उद्योगों के लिए इमेज बनाने में भी इस्तेमाल किया जा सकता है।
+- **विभिन्न उद्योगों में लागू**। इन्हें मेडटेक, पर्यटन, गेम डेवलपमेंट और अन्य जैसे विभिन्न उद्योगों के लिए इमेज बनाने के लिए भी उपयोग किया जा सकता है।
 
 ## परिदृश्य: Edu4All
 
-इस पाठ के हिस्से के रूप में, हम अपने स्टार्टअप Edu4All के साथ काम जारी रखेंगे। छात्र अपनी असाइनमेंट के लिए इमेज बनाएंगे, जो कि पूरी तरह से छात्रों पर निर्भर है कि वे क्या बनाना चाहते हैं। वे अपनी खुद की परी कथा के लिए चित्र बना सकते हैं, अपनी कहानी के लिए नया पात्र बना सकते हैं, या अपने विचारों और अवधारणाओं को विज़ुअलाइज़ कर सकते हैं।
+इस पाठ के हिस्से के रूप में, हम अपने स्टार्टअप, Edu4All के साथ काम करना जारी रखेंगे। छात्र अपनी असाइनमेंट्स के लिए इमेज बनाएंगे। ये इमेज क्या होंगी, यह छात्रों पर निर्भर है, लेकिन वे अपनी खुद की परीकथा के लिए चित्र बना सकते हैं, अपनी कहानी के लिए एक नया पात्र बना सकते हैं, या अपने विचारों और अवधारणाओं को विज़ुअलाइज़ करने में मदद कर सकते हैं।
 
-उदाहरण के लिए, अगर Edu4All के छात्र स्मारकों पर कक्षा में काम कर रहे हैं, तो वे निम्नलिखित इमेज बना सकते हैं:
+उदाहरण के लिए, यदि Edu4All के छात्र कक्षा में स्मारकों पर काम कर रहे हैं, तो वे निम्नलिखित इमेज बना सकते हैं:
 
-![Edu4All startup, class on monuments, Eiffel Tower](../../../translated_images/startup.94d6b79cc4bb3f5afbf6e2ddfcf309aa5d1e256b5f30cc41d252024eaa9cc5dc.hi.png)
+![Edu4All स्टार्टअप, स्मारकों पर कक्षा, एफिल टॉवर](../../../translated_images/startup.94d6b79cc4bb3f5afbf6e2ddfcf309aa5d1e256b5f30cc41d252024eaa9cc5dc.hi.png)
 
-प्रॉम्प्ट का उपयोग करते हुए
+एक प्रॉम्प्ट का उपयोग करते हुए जैसे:
 
-> "Dog next to Eiffel Tower in early morning sunlight"
+> "सुबह की धूप में एफिल टॉवर के पास कुत्ता"
 
 ## DALL-E और Midjourney क्या हैं?
 
-[DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) और [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) दो सबसे लोकप्रिय इमेज जनरेशन मॉडल हैं, जो प्रॉम्प्ट्स का उपयोग करके इमेज बनाते हैं।
+[DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) और [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) दो सबसे लोकप्रिय इमेज जनरेशन मॉडल हैं, जो आपको प्रॉम्प्ट्स का उपयोग करके इमेज बनाने की अनुमति देते हैं।
 
 ### DALL-E
 
-आइए DALL-E से शुरू करते हैं, जो एक जनरेटिव AI मॉडल है जो टेक्स्ट विवरणों से इमेज बनाता है।
+चलो DALL-E से शुरू करते हैं, जो एक जनरेटिव AI मॉडल है जो टेक्स्ट विवरणों से इमेज बनाता है।
 
-> [DALL-E दो मॉडलों, CLIP और diffused attention का संयोजन है](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst)।
+> [DALL-E दो मॉडलों, CLIP और डिफ्यूज्ड अटेंशन का संयोजन है](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst)।
 
 - **CLIP**, एक मॉडल है जो इमेज और टेक्स्ट से एम्बेडिंग्स (डेटा के संख्यात्मक प्रतिनिधित्व) बनाता है।
 
-- **Diffused attention**, एक मॉडल है जो एम्बेडिंग्स से इमेज बनाता है। DALL-E को इमेज और टेक्स्ट के डेटासेट पर प्रशिक्षित किया गया है और यह टेक्स्ट विवरणों से इमेज बना सकता है। उदाहरण के लिए, DALL-E एक टोपी पहने हुए बिल्ली या मोकहॉक वाले कुत्ते की इमेज बना सकता है।
+- **डिफ्यूज्ड अटेंशन**, एक मॉडल है जो एम्बेडिंग्स से इमेज बनाता है। DALL-E को इमेज और टेक्स्ट के डेटासेट पर प्रशिक्षित किया गया है और इसे टेक्स्ट विवरणों से इमेज बनाने के लिए उपयोग किया जा सकता है। उदाहरण के लिए, DALL-E का उपयोग टोपी में बिल्ली या मोहॉक वाले कुत्ते की इमेज बनाने के लिए किया जा सकता है।
 
 ### Midjourney
 
-Midjourney भी DALL-E की तरह काम करता है, यह टेक्स्ट प्रॉम्प्ट्स से इमेज बनाता है। Midjourney का उपयोग “a cat in a hat” या “dog with a mohawk” जैसे प्रॉम्प्ट्स से इमेज बनाने के लिए किया जा सकता है।
+Midjourney DALL-E के समान तरीके से काम करता है, यह टेक्स्ट प्रॉम्प्ट्स से इमेज बनाता है। Midjourney का उपयोग "टोपी में बिल्ली" या "मोहॉक वाले कुत्ते" जैसे प्रॉम्प्ट्स का उपयोग करके इमेज बनाने के लिए भी किया जा सकता है।
 
-![Midjourney द्वारा बनाई गई इमेज, मैकेनिकल कबूतर](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)  
-_इमेज क्रेडिट: विकिपीडिया, Midjourney द्वारा बनाई गई इमेज_
+![Midjourney द्वारा बनाई गई इमेज, यांत्रिक कबूतर](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)
+_चित्र स्रोत: विकिपीडिया, Midjourney द्वारा बनाई गई इमेज_
 
 ## DALL-E और Midjourney कैसे काम करते हैं
 
-सबसे पहले, [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst)। DALL-E एक जनरेटिव AI मॉडल है जो ट्रांसफॉर्मर आर्किटेक्चर पर आधारित है, जिसमें _autoregressive transformer_ होता है।
+पहले, [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst)। DALL-E एक जनरेटिव AI मॉडल है जो ट्रांसफॉर्मर आर्किटेक्चर पर आधारित है और इसमें _ऑटोरेग्रेसिव ट्रांसफॉर्मर_ है।
 
-एक _autoregressive transformer_ यह निर्धारित करता है कि मॉडल टेक्स्ट विवरणों से इमेज कैसे बनाता है, यह एक बार में एक पिक्सेल बनाता है, और फिर अगले पिक्सेल को बनाने के लिए पहले से बने पिक्सेल का उपयोग करता है। यह प्रक्रिया न्यूरल नेटवर्क की कई परतों से गुजरती है, जब तक कि इमेज पूरी न हो जाए।
+एक _ऑटोरेग्रेसिव ट्रांसफॉर्मर_ परिभाषित करता है कि मॉडल टेक्स्ट विवरणों से इमेज कैसे बनाता है। यह एक समय में एक पिक्सल बनाता है और फिर बनाए गए पिक्सल का उपयोग अगले पिक्सल को बनाने के लिए करता है। यह प्रक्रिया तब तक चलती है जब तक इमेज पूरी नहीं हो जाती।
 
-इस प्रक्रिया के साथ, DALL-E इमेज में वस्तुएं, गुण, विशेषताएं आदि नियंत्रित करता है। हालांकि, DALL-E 2 और 3 में जनरेट की गई इमेज पर अधिक नियंत्रण होता है।
+इस प्रक्रिया के साथ, DALL-E इमेज में बनाए गए गुण, वस्तुएं, विशेषताएं और अन्य चीजों को नियंत्रित करता है। हालांकि, DALL-E 2 और 3 में बनाई गई इमेज पर अधिक नियंत्रण होता है।
 
 ## अपनी पहली इमेज जनरेशन एप्लिकेशन बनाना
 
-तो, इमेज जनरेशन एप्लिकेशन बनाने के लिए क्या चाहिए? आपको निम्नलिखित लाइब्रेरीज़ की जरूरत होगी:
+तो इमेज जनरेशन एप्लिकेशन बनाने के लिए आपको क्या चाहिए? आपको निम्नलिखित लाइब्रेरीज़ की आवश्यकता होगी:
 
-- **python-dotenv**, यह लाइब्रेरी आपके सीक्रेट्स को कोड से अलग _.env_ फाइल में रखने के लिए अत्यधिक अनुशंसित है।
-- **openai**, यह लाइब्रेरी OpenAI API के साथ इंटरैक्ट करने के लिए है।
+- **python-dotenv**, यह लाइब्रेरी आपके सीक्रेट्स को कोड से दूर _.env_ फाइल में रखने के लिए अत्यधिक अनुशंसित है।
+- **openai**, यह लाइब्रेरी OpenAI API के साथ इंटरैक्ट करने के लिए उपयोग की जाती है।
 - **pillow**, Python में इमेज के साथ काम करने के लिए।
-- **requests**, HTTP रिक्वेस्ट बनाने में मदद के लिए।
+- **requests**, HTTP अनुरोध करने में मदद करने के लिए।
 
-1. एक _.env_ फाइल बनाएं और निम्नलिखित सामग्री डालें:
+## Azure OpenAI मॉडल बनाएं और डिप्लॉय करें
+
+यदि पहले से नहीं किया गया है, तो [Microsoft Learn](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal) पेज पर दिए गए निर्देशों का पालन करें
+Azure OpenAI संसाधन और मॉडल बनाने के लिए। मॉडल के रूप में DALL-E 3 का चयन करें।  
+
+## ऐप बनाएं
+
+1. एक फाइल _.env_ बनाएं जिसमें निम्नलिखित सामग्री हो:
 
    ```text
    AZURE_OPENAI_ENDPOINT=<your endpoint>
    AZURE_OPENAI_API_KEY=<your key>
+   AZURE_OPENAI_DEPLOYMENT="dall-e-3"
    ```
 
-   यह जानकारी Azure Portal में आपके रिसोर्स के "Keys and Endpoint" सेक्शन में मिलेगी।
+   Azure OpenAI Foundry Portal में अपने संसाधन के "Deployments" सेक्शन में इस जानकारी को ढूंढें।
 
-1. ऊपर दी गई लाइब्रेरीज़ को एक फाइल _requirements.txt_ में इकट्ठा करें:
+1. ऊपर दी गई लाइब्रेरीज़ को _requirements.txt_ नामक फाइल में इकट्ठा करें, जैसे:
 
    ```text
    python-dotenv
@@ -105,7 +113,7 @@ _इमेज क्रेडिट: विकिपीडिया, Midjourney 
    requests
    ```
 
-1. फिर, वर्चुअल एनवायरनमेंट बनाएं और लाइब्रेरीज़ इंस्टॉल करें:
+1. इसके बाद, वर्चुअल एनवायरनमेंट बनाएं और लाइब्रेरीज़ इंस्टॉल करें:
 
    ```bash
    python3 -m venv venv
@@ -113,71 +121,68 @@ _इमेज क्रेडिट: विकिपीडिया, Midjourney 
    pip install -r requirements.txt
    ```
 
-   Windows के लिए, वर्चुअल एनवायरनमेंट बनाने और सक्रिय करने के लिए निम्न कमांड्स का उपयोग करें:
+   Windows के लिए, वर्चुअल एनवायरनमेंट बनाने और सक्रिय करने के लिए निम्नलिखित कमांड का उपयोग करें:
 
    ```bash
    python3 -m venv venv
    venv\Scripts\activate.bat
    ```
 
-1. _app.py_ नामक फाइल में निम्न कोड जोड़ें:
+1. _app.py_ नामक फाइल में निम्नलिखित कोड जोड़ें:
 
-   ```python
-   import openai
-   import os
-   import requests
-   from PIL import Image
-   import dotenv
+    ```python
+    import openai
+    import os
+    import requests
+    from PIL import Image
+    import dotenv
+    from openai import OpenAI, AzureOpenAI
+    
+    # import dotenv
+    dotenv.load_dotenv()
+    
+    # configure Azure OpenAI service client 
+    client = AzureOpenAI(
+      azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+      api_key=os.environ['AZURE_OPENAI_API_KEY'],
+      api_version = "2024-02-01"
+      )
+    try:
+        # Create an image by using the image generation API
+        generation_response = client.images.generate(
+                                prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                                size='1024x1024', n=1,
+                                model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                              )
 
-   # import dotenv
-   dotenv.load_dotenv()
+        # Set the directory for the stored image
+        image_dir = os.path.join(os.curdir, 'images')
 
-   # Get endpoint and key from environment variables
-   openai.api_base = os.environ['AZURE_OPENAI_ENDPOINT']
-   openai.api_key = os.environ['AZURE_OPENAI_API_KEY']
+        # If the directory doesn't exist, create it
+        if not os.path.isdir(image_dir):
+            os.mkdir(image_dir)
 
-   # Assign the API version (DALL-E is currently supported for the 2023-06-01-preview API version only)
-   openai.api_version = '2023-06-01-preview'
-   openai.api_type = 'azure'
+        # Initialize the image path (note the filetype should be png)
+        image_path = os.path.join(image_dir, 'generated-image.png')
 
+        # Retrieve the generated image
+        image_url = generation_response.data[0].url  # extract image URL from response
+        generated_image = requests.get(image_url).content  # download the image
+        with open(image_path, "wb") as image_file:
+            image_file.write(generated_image)
 
-   try:
-       # Create an image by using the image generation API
-       generation_response = openai.Image.create(
-           prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
-           size='1024x1024',
-           n=2,
-           temperature=0,
-       )
-       # Set the directory for the stored image
-       image_dir = os.path.join(os.curdir, 'images')
+        # Display the image in the default image viewer
+        image = Image.open(image_path)
+        image.show()
 
-       # If the directory doesn't exist, create it
-       if not os.path.isdir(image_dir):
-           os.mkdir(image_dir)
-
-       # Initialize the image path (note the filetype should be png)
-       image_path = os.path.join(image_dir, 'generated-image.png')
-
-       # Retrieve the generated image
-       image_url = generation_response["data"][0]["url"]  # extract image URL from response
-       generated_image = requests.get(image_url).content  # download the image
-       with open(image_path, "wb") as image_file:
-           image_file.write(generated_image)
-
-       # Display the image in the default image viewer
-       image = Image.open(image_path)
-       image.show()
-
-   # catch exceptions
-   except openai.InvalidRequestError as err:
-       print(err)
-
+    # catch exceptions
+    except openai.InvalidRequestError as err:
+        print(err)
    ```
 
-आइए इस कोड को समझते हैं:
+इस कोड को समझते हैं:
 
-- सबसे पहले, हम आवश्यक लाइब्रेरीज़ इम्पोर्ट करते हैं, जिनमें OpenAI लाइब्रेरी, dotenv लाइब्रेरी, requests लाइब्रेरी, और Pillow लाइब्रेरी शामिल हैं।
+- सबसे पहले, हम उन लाइब्रेरीज़ को इम्पोर्ट करते हैं जिनकी हमें आवश्यकता है, जिसमें OpenAI लाइब्रेरी, dotenv लाइब्रेरी, requests लाइब्रेरी और Pillow लाइब्रेरी शामिल हैं।
 
   ```python
   import openai
@@ -187,88 +192,94 @@ _इमेज क्रेडिट: विकिपीडिया, Midjourney 
   import dotenv
   ```
 
-- इसके बाद, हम _.env_ फाइल से पर्यावरण चर (environment variables) लोड करते हैं।
+- इसके बाद, हम _.env_ फाइल से एनवायरनमेंट वेरिएबल्स लोड करते हैं।
 
   ```python
   # import dotenv
   dotenv.load_dotenv()
   ```
 
-- फिर, OpenAI API के लिए endpoint, key, version और type सेट करते हैं।
+- फिर, हम Azure OpenAI सेवा क्लाइंट को कॉन्फ़िगर करते हैं।
 
   ```python
   # Get endpoint and key from environment variables
-  openai.api_base = os.environ['AZURE_OPENAI_ENDPOINT']
-  openai.api_key = os.environ['AZURE_OPENAI_API_KEY']
-
-  # add version and type, Azure specific
-  openai.api_version = '2023-06-01-preview'
-  openai.api_type = 'azure'
+  client = AzureOpenAI(
+      azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+      api_key=os.environ['AZURE_OPENAI_API_KEY'],
+      api_version = "2024-02-01"
+      )
   ```
 
 - इसके बाद, हम इमेज जनरेट करते हैं:
 
   ```python
   # Create an image by using the image generation API
-  generation_response = openai.Image.create(
-      prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
-      size='1024x1024',
-      n=2,
-      temperature=0,
-  )
+  generation_response = client.images.generate(
+                        prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                        size='1024x1024', n=1,
+                        model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                      )
   ```
 
-  ऊपर दिया गया कोड एक JSON ऑब्जेक्ट रिटर्न करता है जिसमें जनरेट की गई इमेज का URL होता है। हम इस URL का उपयोग करके इमेज डाउनलोड कर सकते हैं और फाइल में सेव कर सकते हैं।
+  ऊपर दिया गया कोड एक JSON ऑब्जेक्ट के साथ प्रतिक्रिया करता है जिसमें जनरेट की गई इमेज का URL होता है। हम इस URL का उपयोग इमेज डाउनलोड करने और इसे फाइल में सेव करने के लिए कर सकते हैं।
 
-- अंत में, हम इमेज खोलते हैं और इसे डिफ़ॉल्ट इमेज व्यूअर में दिखाते हैं:
+- अंत में, हम इमेज को खोलते हैं और इसे मानक इमेज व्यूअर का उपयोग करके प्रदर्शित करते हैं:
 
   ```python
   image = Image.open(image_path)
   image.show()
   ```
 
-### इमेज जनरेट करने वाले कोड का विस्तार से विवरण
+### इमेज जनरेट करने पर अधिक विवरण
 
-आइए इमेज जनरेट करने वाले कोड को विस्तार से देखें:
+आइए उस कोड को देखें जो इमेज जनरेट करता है:
 
-```python
-generation_response = openai.Image.create(
-        prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
-        size='1024x1024',
-        n=2,
-        temperature=0,
-    )
-```
+   ```python
+     generation_response = client.images.generate(
+                               prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                               size='1024x1024', n=1,
+                               model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                           )
+   ```
 
-- **prompt**, वह टेक्स्ट प्रॉम्प्ट है जिसका उपयोग इमेज बनाने के लिए किया जाता है। इस उदाहरण में, प्रॉम्प्ट है "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"।
-- **size**, जनरेट की गई इमेज का आकार है। इस उदाहरण में, इमेज 1024x1024 पिक्सेल की है।
-- **n**, जनरेट की जाने वाली इमेज की संख्या है। इस उदाहरण में, दो इमेज बनाई जा रही हैं।
-- **temperature**, यह पैरामीटर जनरेटिव AI मॉडल के आउटपुट की यादृच्छिकता (randomness) को नियंत्रित करता है। तापमान 0 से 1 के बीच होता है, जहां 0 का मतलब है आउटपुट निश्चित (deterministic) और 1 का मतलब है आउटपुट यादृच्छिक (random)। डिफ़ॉल्ट मान 0.7 है।
+- **prompt**, वह टेक्स्ट प्रॉम्प्ट है जिसका उपयोग इमेज जनरेट करने के लिए किया जाता है। इस मामले में, हम "घोड़े पर खरगोश, लॉलीपॉप पकड़े हुए, कोहरे वाले घास के मैदान में जहां डैफोडिल्स उगते हैं" प्रॉम्प्ट का उपयोग कर रहे हैं।
+- **size**, वह आकार है जो जनरेट की गई इमेज का होता है। इस मामले में, हम 1024x1024 पिक्सल की इमेज जनरेट कर रहे हैं।
+- **n**, वह संख्या है जो जनरेट की गई इमेज की होती है। इस मामले में, हम दो इमेज जनरेट कर रहे हैं।
+- **temperature**, एक पैरामीटर है जो जनरेटिव AI मॉडल के आउटपुट की रैंडमनेस को नियंत्रित करता है। टेम्परेचर 0 और 1 के बीच का मान होता है, जहां 0 का मतलब है कि आउटपुट निश्चित है और 1 का मतलब है कि आउटपुट रैंडम है। डिफ़ॉल्ट मान 0.7 है।
 
-इमेज के साथ आप और भी कई चीजें कर सकते हैं, जिन्हें हम अगले सेक्शन में कवर करेंगे।
+इमेज के साथ और भी चीजें की जा सकती हैं, जिन्हें हम अगले सेक्शन में कवर करेंगे।
 
 ## इमेज जनरेशन की अतिरिक्त क्षमताएं
 
-अब तक आपने देखा कि हम कुछ पंक्तियों के Python कोड से इमेज कैसे बना सकते हैं। लेकिन इमेज के साथ आप और भी बहुत कुछ कर सकते हैं।
+अब तक आपने देखा कि हम कुछ लाइनों के कोड का उपयोग करके इमेज जनरेट कर सकते हैं। हालांकि, इमेज के साथ और भी चीजें की जा सकती हैं।
 
-आप निम्नलिखित कर सकते हैं:
+आप निम्नलिखित भी कर सकते हैं:
 
-- **एडिट करें**। एक मौजूदा इमेज, मास्क और प्रॉम्प्ट प्रदान करके आप इमेज में बदलाव कर सकते हैं। उदाहरण के लिए, आप इमेज के एक हिस्से में कुछ जोड़ सकते हैं। कल्पना करें कि हमारे बनी की इमेज है, आप बनी को टोपी पहनाने के लिए इमेज, मास्क (जिसमें बदलाव के लिए क्षेत्र की पहचान हो) और टेक्स्ट प्रॉम्प्ट देंगे।
+- **एडिट्स करें**। एक मौजूदा इमेज, मास्क और प्रॉम्प्ट प्रदान करके, आप इमेज को बदल सकते हैं। उदाहरण के लिए, आप इमेज के किसी हिस्से में कुछ जोड़ सकते हैं। कल्पना करें कि हमारे खरगोश की इमेज में, आप खरगोश को टोपी पहना सकते हैं। ऐसा करने के लिए, आपको इमेज, मास्क (जिस हिस्से में बदलाव करना है उसे पहचानने के लिए) और टेक्स्ट प्रॉम्प्ट प्रदान करना होगा। 
+> नोट: यह DALL-E 3 में समर्थित नहीं है। 
+ 
+यहां GPT इमेज का उपयोग करते हुए एक उदाहरण है:
 
-  ```python
-  response = openai.Image.create_edit(
-    image=open("base_image.png", "rb"),
-    mask=open("mask.png", "rb"),
-    prompt="An image of a rabbit with a hat on its head.",
-    n=1,
-    size="1024x1024"
-  )
-  image_url = response['data'][0]['url']
-  ```
+   ```python
+   response = client.images.edit(
+       model="gpt-image-1",
+       image=open("sunlit_lounge.png", "rb"),
+       mask=open("mask.png", "rb"),
+       prompt="A sunlit indoor lounge area with a pool containing a flamingo"
+   )
+   image_url = response.data[0].url
+   ```
 
-  मूल इमेज में केवल खरगोश होगा, लेकिन अंतिम इमेज में खरगोश के सिर पर टोपी होगी।
+  बेस इमेज में केवल पूल के साथ लाउंज होगा, लेकिन अंतिम इमेज में फ्लेमिंगो होगा:
 
-- **वैरिएशंस बनाएं**। इसका मतलब है कि आप एक मौजूदा इमेज लेते हैं और उससे वैरिएशंस बनवाते हैं। वैरिएशन बनाने के लिए, आप एक इमेज और टेक्स्ट प्रॉम्प्ट देते हैं, और कोड इस प्रकार होगा:
+<div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+  <img src="../../../translated_images/sunlit_lounge.a75a0cb61749db0eddc1820c30a5fa9a3a9f48518cd7c8df4c2073e8c793bbb7.hi.png" style="width: 30%; max-width: 200px; height: auto;">
+  <img src="../../../translated_images/mask.1b2976ccec9e011eaac6cd3697d804a22ae6debba7452da6ba3bebcaa9c54ff0.hi.png" style="width: 30%; max-width: 200px; height: auto;">
+  <img src="../../../translated_images/sunlit_lounge_result.76ae02957c0bbeb860f1efdb42dd7f450ea01c6ae6cd70ad5ade4bab1a545d51.hi.png" style="width: 30%; max-width: 200px; height: auto;">
+</div>
+
+
+- **वेरिएशंस बनाएं**। विचार यह है कि आप एक मौजूदा इमेज लें और उससे वेरिएशंस बनाने के लिए कहें। वेरिएशन बनाने के लिए, आप एक इमेज और टेक्स्ट प्रॉम्प्ट प्रदान करते हैं और कोड इस प्रकार होता है:
 
   ```python
   response = openai.Image.create_variation(
@@ -279,40 +290,40 @@ generation_response = openai.Image.create(
   image_url = response['data'][0]['url']
   ```
 
-  > ध्यान दें, यह केवल OpenAI पर समर्थित है।
+  > नोट, यह केवल OpenAI पर समर्थित है।
 
-## तापमान (Temperature)
+## टेम्परेचर
 
-तापमान एक पैरामीटर है जो जनरेटिव AI मॉडल के आउटपुट की यादृच्छिकता को नियंत्रित करता है। तापमान 0 से 1 के बीच होता है, जहां 0 का मतलब है आउटपुट निश्चित और 1 का मतलब है आउटपुट यादृच्छिक। डिफ़ॉल्ट मान 0.7 है।
+टेम्परेचर एक पैरामीटर है जो जनरेटिव AI मॉडल के आउटपुट की रैंडमनेस को नियंत्रित करता है। टेम्परेचर 0 और 1 के बीच का मान होता है, जहां 0 का मतलब है कि आउटपुट निश्चित है और 1 का मतलब है कि आउटपुट रैंडम है। डिफ़ॉल्ट मान 0.7 है।
 
-आइए देखें तापमान कैसे काम करता है, इस प्रॉम्प्ट को दो बार चलाकर:
+आइए देखें कि टेम्परेचर कैसे काम करता है, इस प्रॉम्प्ट को दो बार चलाकर:
 
-> प्रॉम्प्ट: "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"
+> प्रॉम्प्ट: "घोड़े पर खरगोश, लॉलीपॉप पकड़े हुए, कोहरे वाले घास के मैदान में जहां डैफोडिल्स उगते हैं"
 
-![Bunny on a horse holding a lollipop, version 1](../../../translated_images/v1-generated-image.a295cfcffa3c13c2432eb1e41de7e49a78c814000fb1b462234be24b6e0db7ea.hi.png)
+![घोड़े पर खरगोश, लॉलीपॉप पकड़े हुए, संस्करण 1](../../../translated_images/v1-generated-image.a295cfcffa3c13c2432eb1e41de7e49a78c814000fb1b462234be24b6e0db7ea.hi.png)
 
-अब वही प्रॉम्प्ट फिर से चलाते हैं ताकि देखें कि हमें एक जैसी इमेज दो बार नहीं मिलेगी:
+अब उसी प्रॉम्प्ट को फिर से चलाते हैं ताकि देखें कि हमें एक ही इमेज दो बार नहीं मिलेगी:
 
-![Generated image of bunny on horse](../../../translated_images/v2-generated-image.33f55a3714efe61dc19622c869ba6cd7d6e6de562e26e95b5810486187aace39.hi.png)
+![घोड़े पर खरगोश की जनरेट की गई इमेज](../../../translated_images/v2-generated-image.33f55a3714efe61dc19622c869ba6cd7d6e6de562e26e95b5810486187aace39.hi.png)
 
-जैसा कि आप देख सकते हैं, इमेजें समान हैं, लेकिन बिल्कुल एक जैसी नहीं। अब तापमान मान को 0.1 करते हैं और देखते हैं क्या होता है:
+जैसा कि आप देख सकते हैं, इमेज समान हैं, लेकिन बिल्कुल एक जैसी नहीं हैं। आइए टेम्परेचर मान को 0.1 पर बदलकर देखें कि क्या होता है:
 
 ```python
- generation_response = openai.Image.create(
+ generation_response = client.images.create(
         prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
         size='1024x1024',
         n=2
     )
 ```
 
-### तापमान बदलना
+### टेम्परेचर बदलना
 
-तो चलिए प्रतिक्रिया को अधिक निश्चित बनाने की कोशिश करते हैं। हमने जो दो इमेज बनाईं, उनमें पहली में बनी है और दूसरी में घोड़ा, इसलिए इमेज काफी अलग हैं।
+तो चलिए प्रतिक्रिया को अधिक निश्चित बनाने की कोशिश करते हैं। हमने जो दो इमेज जनरेट की थीं, उनमें देखा कि पहली इमेज में खरगोश है और दूसरी इमेज में घोड़ा है, इसलिए इमेज काफी भिन्न हैं।
 
-इसलिए, हम अपना कोड बदलकर तापमान को 0 कर देते हैं, इस तरह:
+इसलिए, चलिए अपने कोड को बदलते हैं और टेम्परेचर को 0 पर सेट करते हैं, इस प्रकार:
 
 ```python
-generation_response = openai.Image.create(
+generation_response = client.images.create(
         prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
         size='1024x1024',
         n=2,
@@ -320,28 +331,28 @@ generation_response = openai.Image.create(
     )
 ```
 
-अब जब आप यह कोड चलाएंगे, तो आपको ये दो इमेज मिलेंगी:
+अब जब आप इस कोड को चलाते हैं, तो आपको ये दो इमेज मिलती हैं:
 
-- ![Temperature 0, v1](../../../translated_images/v1-temp-generated-image.a4346e1d2360a056d855ee3dfcedcce91211747967cb882e7d2eff2076f90e4a.hi.png)
-- ![Temperature 0 , v2](../../../translated_images/v2-temp-generated-image.871d0c920dbfb0f1cb5d9d80bffd52da9b41f83b386320d9a9998635630ec83d.hi.png)
+- ![टेम्परेचर 0, संस्करण 1](../../../translated_images/v1-temp-generated-image.a4346e1d2360a056d855ee3dfcedcce91211747967cb882e7d2eff2076f90e4a.hi.png)
+- ![टेम्परेचर 0, संस्करण 2](../../../translated_images/v2-temp-generated-image.871d0c920dbfb0f1cb5d9d80bffd52da9b41f83b386320d9a9998635630ec83d.hi.png)
 
-यहां आप स्पष्ट रूप से देख सकते हैं कि इमेजें एक-दूसरे से अधिक मिलती-जुलती हैं।
+यहां आप स्पष्ट रूप से देख सकते हैं कि इमेज एक-दूसरे से अधिक मिलती-जुलती हैं।
 
-## मेटाप्रॉम्प्ट्स के साथ अपने एप्लिकेशन की सीमाएं कैसे निर्धारित करें
+## अपने एप्लिकेशन के लिए मेटा प्रॉम्प्ट्स के साथ सीमाएं कैसे परिभाषित करें
 
-हमारे डेमो के साथ, हम पहले ही अपने क्लाइंट्स के लिए इमेज बना सकते हैं। लेकिन हमें अपने एप्लिकेशन के लिए कुछ सीमाएं बनानी होंगी।
+हमारे डेमो के साथ, हम पहले ही अपने क्लाइंट्स के लिए इमेज जनरेट कर सकते हैं। हालांकि, हमें अपने एप्लिकेशन के लिए कुछ सीमाएं बनानी होंगी।
 
-उदाहरण के लिए, हम ऐसी इमेज नहीं बनाना चाहते जो कार्यस्थल के लिए सुरक्षित न हों, या जो बच्चों के लिए उपयुक्त न हों।
+उदाहरण के लिए, हम ऐसी इमेज जनरेट नहीं करना चाहते जो कार्यस्थल के लिए सुरक्षित न हों या बच्चों के लिए उपयुक्त न हों।
 
-हम यह _मेटाप्रॉम्प्ट्स_ के साथ कर सकते हैं। मेटाप्रॉम्प्ट्स टेक्स्ट प्रॉम्प्ट्स होते हैं जो जनरेटिव AI मॉडल के आउटपुट को नियंत्रित करने के लिए उपयोग किए जाते हैं। उदाहरण के लिए, हम मेटाप्रॉम्प्ट्स का उपयोग आउटपुट को नियंत्रित करने के लिए कर सकते हैं, और सुनिश्चित कर सकते हैं कि जनरेट की गई इमेजें कार्यस्थल के लिए सुरक्षित हों या बच्चों के लिए उपयुक्त हों।
+हम इसे _मेटा प्रॉम्प्ट्स_ के साथ कर सकते हैं। मेटा प्रॉम्प्ट्स टेक्स्ट प्रॉम्प्ट्स होते हैं जो जनरेटिव AI मॉडल के आउटपुट को नियंत्रित करने के लिए उपयोग किए जाते हैं। उदाहरण के लिए, हम मेटा प्रॉम्प्ट्स का उपयोग आउटपुट को नियंत्रित करने और यह सुनिश्चित करने के लिए कर सकते हैं कि जनरेट की गई इमेज कार्यस्थल के लिए सुरक्षित हों या बच्चों के लिए उपयुक्त हों।
 
 ### यह कैसे काम करता है?
 
-अब, मेटाप्रॉम्प्ट्स कैसे काम करते हैं?
+अब, मेटा प्रॉम्प्ट्स कैसे काम करते हैं?
 
-मेटाप्रॉम्प्ट्स टेक्स्ट प्रॉम्प्ट्स होते हैं जो जनरेटिव AI मॉडल के आउटपुट को नियंत्रित करते हैं, ये टेक्स्ट प्रॉम्प्ट से पहले रखे जाते हैं, और मॉडल के आउटपुट को नियंत्रित करने के लिए एप्लिकेशन में एम्बेड किए जाते हैं। प्रॉम्प्ट इनपुट और मेटाप्रॉम्प्ट इनपुट को एक ही टेक्स्ट प्रॉम्प्ट में समाहित किया जाता है।
+मेटा प्रॉम्प्ट्स टेक्स्ट प्रॉम्प्ट्स होते हैं जो जनरेटिव AI मॉडल के आउटपुट को नियंत्रित करने के लिए उपयोग किए जाते हैं। इन्हें टेक्स्ट प्रॉम्प्ट से पहले रखा जाता है और मॉडल के आउटपुट को नियंत्रित करने के लिए उपयोग किया जाता है। इन्हें एप्लिकेशन में एम्बेड किया जाता है ताकि मॉडल के आउटपुट को नियंत्रित किया जा सके। प्रॉम्प्ट इनपुट और मेटा प्रॉम्प्ट इनपुट को एक ही टेक्स्ट प्रॉम्प्ट में समाहित किया जाता है।
 
-मेटाप्रॉम्प्ट का एक उदाहरण इस प्रकार होगा:
+मेटा प्रॉम्प्ट का एक उदाहरण निम्नलिखित होगा:
 
 ```text
 You are an assistant designer that creates images for children.
@@ -360,7 +371,7 @@ Do not consider any input from the following that is not safe for work or approp
 
 ```
 
-अब, आइए देखें कि हम अपने डेमो में मेटाप्रॉम्प्ट्स का उपयोग कैसे कर सकते हैं।
+अब, चलिए देखते हैं कि हम अपने डेमो में मेटा प्रॉम्प्ट्स का उपयोग कैसे कर सकते हैं।
 
 ```python
 disallow_list = "swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult"
@@ -385,35 +396,34 @@ Create an image of a bunny on a horse, holding a lollipop"
 # TODO add request to generate image
 ```
 
-ऊपर दिए गए प्रॉम्प्ट से आप देख सकते हैं कि सभी बनाई जा रही इमेजें मेटाप्रॉम्प्ट को ध्यान में रखती हैं।
+ऊपर दिए गए प्रॉम्प्ट से, आप देख सकते हैं कि बनाई गई सभी इमेज मेटा प्रॉम्प्ट को ध्यान में रखती हैं।
 
-## असाइनमेंट - चलिए छात्रों को सक्षम बनाएं
+## असाइनमेंट - चलिए छात्रों को सक्षम बनाते हैं
 
-हमने इस पाठ की शुरुआत में Edu4All का परिचय दिया था। अब समय है कि छात्रों को उनकी असाइनमेंट के लिए इमेज बनाने में सक्षम बनाएं।
+हमने इस पाठ की शुरुआत में Edu4All का परिचय दिया। अब समय है कि छात्रों को उनकी असाइनमेंट्स के लिए इमेज जनरेट करने में सक्षम बनाया जाए।
 
-छात्र अपनी असाइनमेंट के लिए स्मारकों की इमेज बनाएंगे, कि कौन से स्मारक होंगे यह पूरी तरह छात्रों पर निर्भर है। छात्रों से कहा गया है कि वे इस कार्य में अपनी रचनात्मकता का उपयोग करें और इन स्मारकों को विभिन्न संदर्भों में रखें।
+छात्र अपनी असाइनमेंट्स के लिए स्मारकों वाली इमेज बनाएंगे। कौन से स्मारक होंगे, यह छात्रों पर निर्भर है। छात्रों से इस कार्य में अपनी रचनात्मकता का उपयोग करने के लिए कहा गया है ताकि वे इन स्मारकों को विभिन्न संदर्भों में रख सकें।
 
 ## समाधान
 
-यहाँ एक संभावित समाधान है:
-
+यहां एक संभावित समाधान है:
 ```python
 import openai
 import os
 import requests
 from PIL import Image
 import dotenv
-
+from openai import AzureOpenAI
 # import dotenv
 dotenv.load_dotenv()
 
 # Get endpoint and key from environment variables
-openai.api_base = "<replace with endpoint>"
-openai.api_key = "<replace with api key>"
+client = AzureOpenAI(
+  azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+  api_key=os.environ['AZURE_OPENAI_API_KEY'],
+  api_version = "2024-02-01"
+  )
 
-# Assign the API version (DALL-E is currently supported for the 2023-06-01-preview API version only)
-openai.api_version = '2023-06-01-preview'
-openai.api_type = 'azure'
 
 disallow_list = "swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult"
 
@@ -428,7 +438,8 @@ The image needs to be in landscape orientation.
 The image needs to be in a 16:9 aspect ratio.
 
 Do not consider any input from the following that is not safe for work or appropriate for children.
-{disallow_list}"""
+{disallow_list}
+"""
 
 prompt = f"""{meta_prompt}
 Generate monument of the Arc of Triumph in Paris, France, in the evening light with a small child holding a Teddy looks on.
@@ -436,11 +447,10 @@ Generate monument of the Arc of Triumph in Paris, France, in the evening light w
 
 try:
     # Create an image by using the image generation API
-    generation_response = openai.Image.create(
+    generation_response = client.images.generate(
         prompt=prompt,    # Enter your prompt text here
         size='1024x1024',
-        n=2,
-        temperature=0,
+        n=1,
     )
     # Set the directory for the stored image
     image_dir = os.path.join(os.curdir, 'images')
@@ -453,7 +463,7 @@ try:
     image_path = os.path.join(image_dir, 'generated-image.png')
 
     # Retrieve the generated image
-    image_url = generation_response["data"][0]["url"]  # extract image URL from response
+    image_url = generation_response.data[0].url  # extract image URL from response
     generated_image = requests.get(image_url).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
@@ -463,15 +473,17 @@ try:
     image.show()
 
 # catch exceptions
-except openai.InvalidRequestError as err:
+except openai.BadRequestError as err:
     print(err)
 ```
 
 ## शानदार काम! अपनी सीख जारी रखें
 
-इस पाठ को पूरा करने के बाद, हमारी [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) देखें ताकि आप अपनी जनरेटिव AI की जानकारी को और बढ़ा सकें!
+इस पाठ को पूरा करने के बाद, हमारे [Generative AI Learning संग्रह](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) को देखें और अपनी Generative AI की जानकारी को और बढ़ाएं!
 
-अगले पाठ 10 पर जाएं, जहां हम देखेंगे कि [लो-कोड के साथ AI एप्लिकेशन कैसे बनाएं](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
+पाठ 10 पर जाएं, जहां हम देखेंगे कि [कम-कोड के साथ AI एप्लिकेशन कैसे बनाएं](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
+
+---
 
 **अस्वीकरण**:  
-यह दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) का उपयोग करके अनुवादित किया गया है। जबकि हम सटीकता के लिए प्रयासरत हैं, कृपया ध्यान दें कि स्वचालित अनुवादों में त्रुटियाँ या अशुद्धियाँ हो सकती हैं। मूल दस्तावेज़ अपनी मूल भाषा में ही अधिकारिक स्रोत माना जाना चाहिए। महत्वपूर्ण जानकारी के लिए, पेशेवर मानव अनुवाद की सलाह दी जाती है। इस अनुवाद के उपयोग से उत्पन्न किसी भी गलतफहमी या गलत व्याख्या के लिए हम जिम्मेदार नहीं हैं।
+यह दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) का उपयोग करके अनुवादित किया गया है। जबकि हम सटीकता के लिए प्रयास करते हैं, कृपया ध्यान दें कि स्वचालित अनुवाद में त्रुटियां या अशुद्धियां हो सकती हैं। मूल भाषा में उपलब्ध मूल दस्तावेज़ को आधिकारिक स्रोत माना जाना चाहिए। महत्वपूर्ण जानकारी के लिए, पेशेवर मानव अनुवाद की सिफारिश की जाती है। इस अनुवाद के उपयोग से उत्पन्न किसी भी गलतफहमी या गलत व्याख्या के लिए हम उत्तरदायी नहीं हैं।

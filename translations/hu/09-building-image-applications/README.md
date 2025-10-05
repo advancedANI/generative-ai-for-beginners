@@ -1,102 +1,109 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "1a7fd0f95f9eb673b79da47c0814f4d4",
-  "translation_date": "2025-07-09T13:31:58+00:00",
+  "original_hash": "063a2ac57d6b71bea0eaa880c68770d2",
+  "translation_date": "2025-09-29T21:53:11+00:00",
   "source_file": "09-building-image-applications/README.md",
   "language_code": "hu"
 }
 -->
-# Képgeneráló alkalmazások fejlesztése
+# Képgeneráló alkalmazások építése
 
-[![Képgeneráló alkalmazások fejlesztése](../../../translated_images/09-lesson-banner.906e408c741f44112ff5da17492a30d3872abb52b8530d6506c2631e86e704d0.hu.png)](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)
+[![Képgeneráló alkalmazások építése](../../../translated_images/09-lesson-banner.906e408c741f44112ff5da17492a30d3872abb52b8530d6506c2631e86e704d0.hu.png)](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)
 
-A nagy nyelvi modellek (LLM-ek) nem csak szöveg generálására képesek. Lehetőség van arra is, hogy szöveges leírásokból képeket hozzunk létre. A képek, mint egy új modalitás, számos területen nagyon hasznosak lehetnek, például az orvostechnológiában, építészetben, turizmusban, játékfejlesztésben és még sok másban. Ebben a fejezetben a két legnépszerűbb képgeneráló modellt, a DALL-E-t és a Midjourney-t fogjuk megvizsgálni.
+Az LLM-ek nem csak szöveg generálására alkalmasak. Szöveges leírások alapján képek is létrehozhatók. A képek mint modalitás számos területen hasznosak lehetnek, például az orvostechnológia, az építészet, a turizmus, a játékfejlesztés és még sok más terület esetében. Ebben a fejezetben a két legnépszerűbb képgeneráló modellt, a DALL-E-t és a Midjourney-t vizsgáljuk meg.
 
 ## Bevezetés
 
-Ebben a leckében a következőkről lesz szó:
+Ebben a leckében az alábbiakat tárgyaljuk:
 
-- A képgenerálásról és annak hasznosságáról.
-- A DALL-E-ről és a Midjourney-ről, hogy mik ezek és hogyan működnek.
+- Képgenerálás és annak hasznossága.
+- DALL-E és Midjourney: mik ezek, és hogyan működnek.
 - Hogyan építhetsz képgeneráló alkalmazást.
 
 ## Tanulási célok
 
 A lecke elvégzése után képes leszel:
 
-- Képgeneráló alkalmazást fejleszteni.
-- Meta promptok segítségével meghatározni az alkalmazásod határait.
-- Dolgozni a DALL-E-vel és a Midjourney-vel.
+- Képgeneráló alkalmazást építeni.
+- Meghatározni az alkalmazás határait meta promptokkal.
+- Dolgozni a DALL-E és Midjourney modellekkel.
 
-## Miért érdemes képgeneráló alkalmazást fejleszteni?
+## Miért érdemes képgeneráló alkalmazást építeni?
 
-A képgeneráló alkalmazások remek lehetőséget kínálnak a generatív mesterséges intelligencia képességeinek felfedezésére. Használhatók például:
+A képgeneráló alkalmazások remek lehetőséget kínálnak a generatív mesterséges intelligencia képességeinek felfedezésére. Például az alábbiakra használhatók:
 
-- **Kép szerkesztésére és szintézisére**. Különféle felhasználási esetekhez generálhatsz képeket, például képszerkesztéshez vagy képszintézishez.
+- **Képszerkesztés és szintézis**. Különféle felhasználási esetekhez generálhatsz képeket, például képszerkesztéshez és képszintézishez.
 
-- **Számos iparágban alkalmazhatók**. Képek generálására használhatók többek között az orvostechnológia, turizmus, játékfejlesztés és más területeken.
+- **Számos iparágban alkalmazható**. Képek generálására is használhatók különféle iparágakban, mint például az orvostechnológia, turizmus, játékfejlesztés és más területek.
 
-## Forgatókönyv: Edu4All
+## Szenárió: Edu4All
 
-A lecke során tovább dolgozunk az Edu4All nevű startupunkkal. A diákok képeket készítenek a feladataikhoz; hogy pontosan milyen képeket, az a diákokon múlik, lehetnek például illusztrációk saját meséjükhöz, új karakterek a történetükhöz, vagy segíthetnek elképzeléseik és koncepcióik vizualizálásában.
+A lecke részeként továbbra is az Edu4All startupunkkal dolgozunk. A diákok képeket készítenek a feladataikhoz, hogy pontosan milyen képeket, az a diákokon múlik. Lehetnek például illusztrációk saját meséjükhöz, új karakterek létrehozása a történetükhöz, vagy ötleteik és koncepcióik vizualizálása.
 
-Például, ha az Edu4All diákjai az osztályban emlékművekkel foglalkoznak, ilyen képeket generálhatnak:
+Íme, mit generálhatnak az Edu4All diákjai például, ha az osztályban műemlékekkel dolgoznak:
 
-![Edu4All startup, osztály emlékművekkel, Eiffel-torony](../../../translated_images/startup.94d6b79cc4bb3f5afbf6e2ddfcf309aa5d1e256b5f30cc41d252024eaa9cc5dc.hu.png)
+![Edu4All startup, osztály a műemlékekről, Eiffel-torony](../../../translated_images/startup.94d6b79cc4bb3f5afbf6e2ddfcf309aa5d1e256b5f30cc41d252024eaa9cc5dc.hu.png)
 
-egy ilyen prompttal:
+egy ilyen prompt segítségével:
 
-> "Kutya az Eiffel-torony mellett a kora reggeli napsütésben"
+> "Kutya az Eiffel-torony mellett kora reggeli napsütésben"
 
-## Mi az a DALL-E és a Midjourney?
+## Mi az a DALL-E és Midjourney?
 
-A [DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) és a [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) a legnépszerűbb képgeneráló modellek közé tartoznak, amelyek promptok segítségével képeket hoznak létre.
+A [DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) és a [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) a két legnépszerűbb képgeneráló modell, amelyek lehetővé teszik, hogy promptok segítségével képeket generálj.
 
 ### DALL-E
 
-Kezdjük a DALL-E-vel, amely egy generatív mesterséges intelligencia modell, és szöveges leírásokból képeket generál.
+Kezdjük a DALL-E-vel, amely egy generatív mesterséges intelligencia modell, amely szöveges leírásokból képeket generál.
 
 > [A DALL-E két modell, a CLIP és a diffúz figyelem kombinációja](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst).
 
-- **CLIP** egy olyan modell, amely képekből és szövegekből numerikus reprezentációkat, ún. beágyazásokat (embeddingeket) generál.
+- **CLIP**, egy modell, amely beágyazásokat generál, amelyek az adatok numerikus reprezentációi, képekből és szövegekből.
 
-- **Diffúz figyelem** egy olyan modell, amely a beágyazásokból képeket generál. A DALL-E-t képek és szövegek adatbázisán tanították, és képes szöveges leírások alapján képeket létrehozni. Például képes képet generálni egy kalapos macskáról vagy egy mohawk frizurás kutyáról.
+- **Diffúz figyelem**, egy modell, amely beágyazásokból képeket generál. A DALL-E-t képek és szövegek adatállományán tanították, és szöveges leírásokból képek generálására használható. Például a DALL-E képes generálni egy kalapos macska vagy egy mohawk frizurás kutya képét.
 
 ### Midjourney
 
-A Midjourney hasonlóan működik, mint a DALL-E, szöveges promptokból generál képeket. A Midjourney-vel is létrehozhatsz képeket olyan promptok alapján, mint például „kalapos macska” vagy „mohawk frizurás kutya”.
+A Midjourney hasonló módon működik, mint a DALL-E, szöveges promptokból generál képeket. A Midjourney szintén használható képek generálására olyan promptokkal, mint például „egy kalapos macska” vagy „egy mohawk frizurás kutya”.
 
 ![Midjourney által generált kép, mechanikus galamb](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)
 _Kép forrása: Wikipedia, Midjourney által generált kép_
 
 ## Hogyan működik a DALL-E és a Midjourney?
 
-Először a [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst). A DALL-E egy generatív mesterséges intelligencia modell, amely a transformer architektúrán alapul, és egy _autoregresszív transformer_.
+Először is, [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst). A DALL-E egy generatív mesterséges intelligencia modell, amely a transzformer architektúrán alapul, egy _autoregresszív transzformerrel_.
 
-Az _autoregresszív transformer_ meghatározza, hogyan generál a modell képeket szöveges leírásokból: egyszerre egy pixelt hoz létre, majd a már generált pixelek alapján generálja a következőt. Több rétegen halad át egy neurális hálózatban, amíg a kép elkészül.
+Az _autoregresszív transzformer_ meghatározza, hogyan generál egy modell képeket szöveges leírásokból: egy pixelt generál egyszerre, majd a generált pixeleket használja a következő pixel generálásához. Több rétegen keresztül halad egy neurális hálózatban, amíg a kép elkészül.
 
-Ezzel a folyamattal a DALL-E képes irányítani a kép attribútumait, tárgyait, jellemzőit és még sok mást. A DALL-E 2 és 3 verziók ennél még nagyobb kontrollt biztosítanak a generált kép felett.
+Ezzel a folyamattal a DALL-E szabályozza a generált kép attribútumait, objektumait, jellemzőit és egyebeket. Azonban a DALL-E 2 és 3 nagyobb kontrollt biztosít a generált kép felett.
 
-## Első képgeneráló alkalmazásod elkészítése
+## Az első képgeneráló alkalmazásod építése
 
-Mire van szükség egy képgeneráló alkalmazás elkészítéséhez? A következő könyvtárakra:
+Mit igényel egy képgeneráló alkalmazás építése? Az alábbi könyvtárakra van szükséged:
 
-- **python-dotenv**, erősen ajánlott ennek a könyvtárnak a használata, hogy a titkaidat egy _.env_ fájlban tárold, távol a kódtól.
-- **openai**, ezzel a könyvtárral kommunikálsz az OpenAI API-val.
+- **python-dotenv**, erősen ajánlott ezt a könyvtárat használni, hogy a titkos adataidat egy _.env_ fájlban tartsd távol a kódtól.
+- **openai**, ezt a könyvtárat használod az OpenAI API-val való interakcióhoz.
 - **pillow**, képek kezeléséhez Pythonban.
-- **requests**, HTTP kérésekhez.
+- **requests**, HTTP kérések küldéséhez.
 
-1. Hozz létre egy _.env_ fájlt a következő tartalommal:
+## Azure OpenAI modell létrehozása és telepítése
+
+Ha még nem tetted meg, kövesd az utasításokat a [Microsoft Learn](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal) oldalon, hogy létrehozz egy Azure OpenAI erőforrást és modellt. Válaszd a DALL-E 3 modellt.
+
+## Az alkalmazás létrehozása
+
+1. Hozz létre egy _.env_ fájlt az alábbi tartalommal:
 
    ```text
    AZURE_OPENAI_ENDPOINT=<your endpoint>
    AZURE_OPENAI_API_KEY=<your key>
+   AZURE_OPENAI_DEPLOYMENT="dall-e-3"
    ```
 
-   Ezt az információt az Azure Portálon találod meg az erőforrásod „Kulcsok és végpont” szekciójában.
+   Ezt az információt az Azure OpenAI Foundry Portálon találod meg az erőforrásod "Deployments" szekciójában.
 
-1. Gyűjtsd össze a fenti könyvtárakat egy _requirements.txt_ fájlba így:
+1. Gyűjtsd össze a fenti könyvtárakat egy _requirements.txt_ nevű fájlban, így:
 
    ```text
    python-dotenv
@@ -105,7 +112,7 @@ Mire van szükség egy képgeneráló alkalmazás elkészítéséhez? A követke
    requests
    ```
 
-1. Ezután hozd létre a virtuális környezetet és telepítsd a könyvtárakat:
+1. Ezután hozz létre egy virtuális környezetet, és telepítsd a könyvtárakat:
 
    ```bash
    python3 -m venv venv
@@ -113,71 +120,68 @@ Mire van szükség egy képgeneráló alkalmazás elkészítéséhez? A követke
    pip install -r requirements.txt
    ```
 
-   Windows alatt a következő parancsokkal hozhatod létre és aktiválhatod a virtuális környezetet:
+   Windows esetén használd az alábbi parancsokat a virtuális környezet létrehozásához és aktiválásához:
 
    ```bash
    python3 -m venv venv
    venv\Scripts\activate.bat
    ```
 
-1. Add hozzá a következő kódot egy _app.py_ nevű fájlba:
+1. Add hozzá az alábbi kódot egy _app.py_ nevű fájlba:
 
-   ```python
-   import openai
-   import os
-   import requests
-   from PIL import Image
-   import dotenv
+    ```python
+    import openai
+    import os
+    import requests
+    from PIL import Image
+    import dotenv
+    from openai import OpenAI, AzureOpenAI
+    
+    # import dotenv
+    dotenv.load_dotenv()
+    
+    # configure Azure OpenAI service client 
+    client = AzureOpenAI(
+      azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+      api_key=os.environ['AZURE_OPENAI_API_KEY'],
+      api_version = "2024-02-01"
+      )
+    try:
+        # Create an image by using the image generation API
+        generation_response = client.images.generate(
+                                prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                                size='1024x1024', n=1,
+                                model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                              )
 
-   # import dotenv
-   dotenv.load_dotenv()
+        # Set the directory for the stored image
+        image_dir = os.path.join(os.curdir, 'images')
 
-   # Get endpoint and key from environment variables
-   openai.api_base = os.environ['AZURE_OPENAI_ENDPOINT']
-   openai.api_key = os.environ['AZURE_OPENAI_API_KEY']
+        # If the directory doesn't exist, create it
+        if not os.path.isdir(image_dir):
+            os.mkdir(image_dir)
 
-   # Assign the API version (DALL-E is currently supported for the 2023-06-01-preview API version only)
-   openai.api_version = '2023-06-01-preview'
-   openai.api_type = 'azure'
+        # Initialize the image path (note the filetype should be png)
+        image_path = os.path.join(image_dir, 'generated-image.png')
 
+        # Retrieve the generated image
+        image_url = generation_response.data[0].url  # extract image URL from response
+        generated_image = requests.get(image_url).content  # download the image
+        with open(image_path, "wb") as image_file:
+            image_file.write(generated_image)
 
-   try:
-       # Create an image by using the image generation API
-       generation_response = openai.Image.create(
-           prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
-           size='1024x1024',
-           n=2,
-           temperature=0,
-       )
-       # Set the directory for the stored image
-       image_dir = os.path.join(os.curdir, 'images')
+        # Display the image in the default image viewer
+        image = Image.open(image_path)
+        image.show()
 
-       # If the directory doesn't exist, create it
-       if not os.path.isdir(image_dir):
-           os.mkdir(image_dir)
-
-       # Initialize the image path (note the filetype should be png)
-       image_path = os.path.join(image_dir, 'generated-image.png')
-
-       # Retrieve the generated image
-       image_url = generation_response["data"][0]["url"]  # extract image URL from response
-       generated_image = requests.get(image_url).content  # download the image
-       with open(image_path, "wb") as image_file:
-           image_file.write(generated_image)
-
-       # Display the image in the default image viewer
-       image = Image.open(image_path)
-       image.show()
-
-   # catch exceptions
-   except openai.InvalidRequestError as err:
-       print(err)
-
+    # catch exceptions
+    except openai.InvalidRequestError as err:
+        print(err)
    ```
 
-Magyarázzuk meg ezt a kódot:
+Magyarázzuk el ezt a kódot:
 
-- Először importáljuk a szükséges könyvtárakat, beleértve az OpenAI könyvtárat, a dotenv-et, a requests-et és a Pillow-t.
+- Először importáljuk a szükséges könyvtárakat, beleértve az OpenAI könyvtárat, a dotenv könyvtárat, a requests könyvtárat és a Pillow könyvtárat.
 
   ```python
   import openai
@@ -194,81 +198,86 @@ Magyarázzuk meg ezt a kódot:
   dotenv.load_dotenv()
   ```
 
-- Majd beállítjuk az OpenAI API végpontját, kulcsát, verzióját és típusát.
+- Utána konfiguráljuk az Azure OpenAI szolgáltatás kliensét.
 
   ```python
   # Get endpoint and key from environment variables
-  openai.api_base = os.environ['AZURE_OPENAI_ENDPOINT']
-  openai.api_key = os.environ['AZURE_OPENAI_API_KEY']
-
-  # add version and type, Azure specific
-  openai.api_version = '2023-06-01-preview'
-  openai.api_type = 'azure'
+  client = AzureOpenAI(
+      azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+      api_key=os.environ['AZURE_OPENAI_API_KEY'],
+      api_version = "2024-02-01"
+      )
   ```
 
 - Ezután generáljuk a képet:
 
   ```python
   # Create an image by using the image generation API
-  generation_response = openai.Image.create(
-      prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
-      size='1024x1024',
-      n=2,
-      temperature=0,
-  )
+  generation_response = client.images.generate(
+                        prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                        size='1024x1024', n=1,
+                        model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                      )
   ```
 
-  A fenti kód egy JSON objektummal válaszol, amely tartalmazza a generált kép URL-jét. Ezt az URL-t használhatjuk a kép letöltésére és fájlba mentésére.
+  A fenti kód egy JSON objektummal válaszol, amely tartalmazza a generált kép URL-jét. Az URL-t használhatjuk a kép letöltésére és fájlba mentésére.
 
-- Végül megnyitjuk a képet és az alapértelmezett képnézegetővel megjelenítjük:
+- Végül megnyitjuk a képet, és a standard képnézegetővel megjelenítjük:
 
   ```python
   image = Image.open(image_path)
   image.show()
   ```
 
-### Részletesebben a kép generálásáról
+### A kép generálásának részletei
 
 Nézzük meg részletesebben a képgeneráló kódot:
 
-```python
-generation_response = openai.Image.create(
-        prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
-        size='1024x1024',
-        n=2,
-        temperature=0,
-    )
-```
+   ```python
+     generation_response = client.images.generate(
+                               prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                               size='1024x1024', n=1,
+                               model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                           )
+   ```
 
-- **prompt**: a szöveges utasítás, amely alapján a kép generálódik. Ebben az esetben a prompt: „Nyúl lovon, nyalókát tartva, ködös réten, ahol nárciszok nőnek”.
-- **size**: a generált kép mérete. Itt 1024x1024 pixeles képet generálunk.
-- **n**: a generált képek száma. Ebben az esetben két képet generálunk.
-- **temperature**: egy paraméter, amely a generált kimenet véletlenszerűségét szabályozza. Az értéke 0 és 1 között van, ahol 0 determinisztikus (ugyanazt az eredményt adja), 1 pedig teljesen véletlenszerű. Az alapértelmezett érték 0,7.
+- **prompt**, a szöveges prompt, amelyet a kép generálásához használunk. Ebben az esetben a prompt: "Nyúl lovon, nyalókát tartva, ködös réten, ahol nárciszok nőnek".
+- **size**, a generált kép mérete. Ebben az esetben 1024x1024 pixeles képet generálunk.
+- **n**, a generált képek száma. Ebben az esetben két képet generálunk.
+- **temperature**, egy paraméter, amely a generatív mesterséges intelligencia modell kimenetének véletlenszerűségét szabályozza. A hőmérséklet értéke 0 és 1 között van, ahol 0 azt jelenti, hogy a kimenet determinisztikus, és 1 azt jelenti, hogy a kimenet véletlenszerű. Az alapértelmezett érték 0,7.
 
-A képekkel még sok más dolgot is megtehetsz, amiről a következő szakaszban lesz szó.
+További dolgokat is tehetsz a képekkel, amelyeket a következő szekcióban tárgyalunk.
 
-## A képgenerálás további lehetőségei
+## A képgenerálás további képességei
 
-Eddig láttad, hogyan tudtunk néhány sor Python kóddal képet generálni. De ennél többre is képes vagy.
+Eddig láthattad, hogyan tudtunk néhány sor Python kóddal képet generálni. Azonban további dolgokat is tehetsz a képekkel.
 
-Továbbá a következőket is megteheted:
+Ezeket is megteheted:
 
-- **Szerkesztések végrehajtása**. Ha megadsz egy meglévő képet, egy maszkkal és egy prompttal, módosíthatod a képet. Például hozzáadhatsz valamit a kép egy részéhez. Képzeld el a nyulas képet, hozzáadhatsz a nyúlhoz egy kalapot. Ehhez meg kell adnod a képet, egy maszkot (ami megjelöli a módosítandó területet) és egy szöveges utasítást, hogy mit kell csinálni.
+- **Szerkesztés végrehajtása**. Egy meglévő kép, egy maszk és egy prompt megadásával módosíthatod a képet. Például hozzáadhatsz valamit egy kép egy részéhez. Képzeld el a nyúl képünket, hozzáadhatsz egy kalapot a nyúlhoz. Ezt úgy teheted meg, hogy megadod a képet, egy maszkot (amely azonosítja a változtatás területét), és egy szöveges promptot, amely leírja, mit kell tenni.
+> Megjegyzés: ez nem támogatott a DALL-E 3-ban.
 
-  ```python
-  response = openai.Image.create_edit(
-    image=open("base_image.png", "rb"),
-    mask=open("mask.png", "rb"),
-    prompt="An image of a rabbit with a hat on its head.",
-    n=1,
-    size="1024x1024"
-  )
-  image_url = response['data'][0]['url']
-  ```
+Íme egy példa a GPT Image használatával:
 
-  Az alap kép csak a nyulat tartalmazná, de a végső képen már kalap is lesz a nyúlon.
+   ```python
+   response = client.images.edit(
+       model="gpt-image-1",
+       image=open("sunlit_lounge.png", "rb"),
+       mask=open("mask.png", "rb"),
+       prompt="A sunlit indoor lounge area with a pool containing a flamingo"
+   )
+   image_url = response.data[0].url
+   ```
 
-- **Variációk létrehozása**. Az ötlet az, hogy egy meglévő képből kérsz variációkat. Ehhez megadsz egy képet és egy szöveges promptot, majd a következő kódot használod:
+  Az alap kép csak a medencés lounge-t tartalmazná, de a végső kép egy flamingót is tartalmazna:
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+  <img src="../../../translated_images/sunlit_lounge.a75a0cb61749db0eddc1820c30a5fa9a3a9f48518cd7c8df4c2073e8c793bbb7.hu.png" style="width: 30%; max-width: 200px; height: auto;">
+  <img src="../../../translated_images/mask.1b2976ccec9e011eaac6cd3697d804a22ae6debba7452da6ba3bebcaa9c54ff0.hu.png" style="width: 30%; max-width: 200px; height: auto;">
+  <img src="../../../translated_images/sunlit_lounge_result.76ae02957c0bbeb860f1efdb42dd7f450ea01c6ae6cd70ad5ade4bab1a545d51.hu.png" style="width: 30%; max-width: 200px; height: auto;">
+</div>
+
+- **Variációk létrehozása**. Az ötlet az, hogy egy meglévő képet veszel, és variációkat kérsz róla. A variáció létrehozásához megadod a képet és egy szöveges promptot, valamint ilyen kódot:
 
   ```python
   response = openai.Image.create_variation(
@@ -281,38 +290,38 @@ Továbbá a következőket is megteheted:
 
   > Megjegyzés: ez csak az OpenAI-nál támogatott.
 
-## Temperature (hőmérséklet)
+## Hőmérséklet
 
-A temperature egy paraméter, amely a generatív modell kimenetének véletlenszerűségét szabályozza. Az értéke 0 és 1 között van, ahol 0 determinisztikus, 1 pedig teljesen véletlenszerű. Az alapértelmezett érték 0,7.
+A hőmérséklet egy paraméter, amely a generatív mesterséges intelligencia modell kimenetének véletlenszerűségét szabályozza. A hőmérséklet értéke 0 és 1 között van, ahol 0 azt jelenti, hogy a kimenet determinisztikus, és 1 azt jelenti, hogy a kimenet véletlenszerű. Az alapértelmezett érték 0,7.
 
-Nézzünk egy példát a temperature működésére, futtassuk le kétszer ezt a promptot:
+Nézzünk egy példát arra, hogyan működik a hőmérséklet, ha kétszer futtatjuk ezt a promptot:
 
 > Prompt: "Nyúl lovon, nyalókát tartva, ködös réten, ahol nárciszok nőnek"
 
-![Nyúl lovon, nyalókát tartva, 1. verzió](../../../translated_images/v1-generated-image.a295cfcffa3c13c2432eb1e41de7e49a78c814000fb1b462234be24b6e0db7ea.hu.png)
+![Nyúl lovon, nyalókát tartva, verzió 1](../../../translated_images/v1-generated-image.a295cfcffa3c13c2432eb1e41de7e49a78c814000fb1b462234be24b6e0db7ea.hu.png)
 
-Most futtassuk le ugyanazt a promptot még egyszer, hogy lássuk, nem kapunk ugyanazt a képet kétszer:
+Most futtassuk ugyanazt a promptot, hogy lássuk, nem kapunk kétszer ugyanazt a képet:
 
-![Nyúl lovon generált kép](../../../translated_images/v2-generated-image.33f55a3714efe61dc19622c869ba6cd7d6e6de562e26e95b5810486187aace39.hu.png)
+![Generált kép nyúl lovon](../../../translated_images/v2-generated-image.33f55a3714efe61dc19622c869ba6cd7d6e6de562e26e95b5810486187aace39.hu.png)
 
-Ahogy látható, a képek hasonlóak, de nem azonosak. Próbáljuk meg a temperature értékét 0,1-re állítani, és nézzük meg, mi történik:
+Ahogy látható, a képek hasonlóak, de nem azonosak. Próbáljuk meg megváltoztatni a hőmérséklet értékét 0,1-re, és nézzük meg, mi történik:
 
 ```python
- generation_response = openai.Image.create(
+ generation_response = client.images.create(
         prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
         size='1024x1024',
         n=2
     )
 ```
 
-### A temperature megváltoztatása
+### A hőmérséklet megváltoztatása
 
-Próbáljuk meg a választ determinisztikusabbá tenni. A két generált képből látható, hogy az első képen nyúl van, a másodikon ló, tehát a képek jelentősen eltérnek.
+Próbáljuk meg a választ determinisztikusabbá tenni. Az első két generált képből megfigyelhettük, hogy az első képen van egy nyúl, a másodikon pedig egy ló, tehát a képek jelentősen eltérnek.
 
-Ezért módosítsuk a kódot, és állítsuk a temperature értékét 0-ra, így:
+Ezért változtassuk meg a kódunkat, és állítsuk a hőmérsékletet 0-ra, így:
 
 ```python
-generation_response = openai.Image.create(
+generation_response = client.images.create(
         prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',    # Enter your prompt text here
         size='1024x1024',
         n=2,
@@ -320,28 +329,28 @@ generation_response = openai.Image.create(
     )
 ```
 
-Ha most lefuttatod ezt a kódot, a következő két képet kapod:
+Most, amikor futtatod ezt a kódot, ezeket a képeket kapod:
 
-- ![Temperature 0, 1. verzió](../../../translated_images/v1-temp-generated-image.a4346e1d2360a056d855ee3dfcedcce91211747967cb882e7d2eff2076f90e4a.hu.png)
-- ![Temperature 0, 2. verzió](../../../translated_images/v2-temp-generated-image.871d0c920dbfb0f1cb5d9d80bffd52da9b41f83b386320d9a9998635630ec83d.hu.png)
+- ![Hőmérséklet 0, v1](../../../translated_images/v1-temp-generated-image.a4346e1d2360a056d855ee3dfcedcce91211747967cb882e7d2eff2076f90e4a.hu.png)
+- ![Hőmérséklet 0, v2](../../../translated_images/v2-temp-generated-image.871d0c920dbfb0f1cb5d9d80bffd52da9b41f83b386320d9a9998635630ec83d.hu.png)
 
-Itt jól látható, hogy a képek sokkal jobban hasonlítanak egymásra.
+Itt egyértelműen látható, hogy a képek jobban hasonlítanak egymásra.
 
-## Hogyan határozd meg az alkalmazásod határait metapromptokkal?
+## Hogyan határozzuk meg az alkalmazás határait meta promptokkal?
 
-A demónkkal már képesek vagyunk képeket generálni az ügyfeleinknek. Ugyanakkor szükség van arra, hogy bizonyos határokat szabjunk az alkalmazásnak.
+A demónkkal már képeket tudunk generálni az ügyfeleink számára. Azonban szükségünk van arra, hogy bizonyos határokat állítsunk az alkalmazásunk számára.
 
-Például nem szeretnénk olyan képeket generálni, amelyek nem munkahelyi környezetbe valók, vagy nem megfelelőek gyerekek számára.
+Például nem szeretnénk olyan képeket generálni, amelyek nem biztonságosak munkahelyi környezetben, vagy nem megfelelőek gyermekek számára.
 
-Ezt _metapromptokkal_ érhetjük el. A metapromptok olyan szöveges utasítások, amelyekkel szabályozhatjuk a generatív modell kimenetét. Például metapromptokkal biztosíthatjuk, hogy a generált képek munkahelybarátok legyenek, vagy gyerekek számára megfelelőek.
+Ezt _meta promptokkal_ tehetjük meg. A meta promptok olyan szöveges promptok, amelyeket a generatív mesterséges intelligencia modell kimenetének szabályozására használunk. Például meta promptokkal szabályozhatjuk a kimenetet, és biztosíthatjuk, hogy a generált képek biztonságosak legyenek munkahelyi környezetben, vagy megfelelőek legyenek gyermekek számára.
 
 ### Hogyan működik?
 
-Hogyan működnek a metapromptok?
+Hogyan működnek a meta promptok?
 
-A metapromptok olyan szöveges utasítások, amelyek a generatív modell kimenetének szabályozására szolgálnak. Ezek a prompt előtt helyezkednek el, és beágyazódnak az alkalmazásokba, hogy kontrollálják a modell kimenetét. Egyetlen szöveges promptként kezelik a metaprompt és a felhasználói prompt együttesét.
+A meta promptok olyan szöveges promptok, amelyeket a generatív mesterséges intelligencia modell kimenetének szabályozására használnak. Ezek a szöveges prompt előtt helyezkednek el, és a modell kimenetének szabályozására szolgálnak, beágyazva az alkalmazásokba, hogy szabályozzák a modell kimenetét. A prompt bemenetet és a meta prompt bemenetet egyetlen szöveges promptba foglalják.
 
-Egy példa metaprompt lehet a következő:
+Egy meta prompt példája lehet a következő:
 
 ```text
 You are an assistant designer that creates images for children.
@@ -360,7 +369,7 @@ Do not consider any input from the following that is not safe for work or approp
 
 ```
 
-Most nézzük meg, hogyan használhatjuk a metapromptokat a demónkban.
+Most nézzük meg, hogyan használhatjuk a meta promptokat a demónkban.
 
 ```python
 disallow_list = "swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult"
@@ -385,35 +394,34 @@ Create an image of a bunny on a horse, holding a lollipop"
 # TODO add request to generate image
 ```
 
-A fenti promptból látható, hogy az összes generált kép figyelembe veszi a metapromptot.
+A fenti promptból látható, hogy minden létrehozott kép figyelembe veszi a meta promptot.
 
-## Feladat – engedélyezzük a diákoknak a képgenerálást
+## Feladat - segítsük a diákokat
 
-Az elején bemutattuk az Edu4All-t. Most itt az ideje, hogy a diákok is képeket generálhassanak a feladataikhoz.
+A lecke elején bemutattuk az Edu4All-t. Most itt az ideje, hogy lehetőséget adjunk a diákoknak, hogy képeket generáljanak a feladataikhoz.
 
-A diákok képeket készítenek az emlékművekről szóló feladataikhoz, hogy pontosan milyen emlékműveket, az a diákokon múlik. Arra kérjük őket, hogy kreativitásukat használva helyezzék ezeket az emlékműveket különböző kontextusokba.
+A diákok képeket készítenek a feladataikhoz, amelyek műemlékeket tartalmaznak, pontosan milyen műemlékeket, az a diákokon múlik. A diákokat arra kérjük, hogy használják kreativitásukat ebben a feladatban, és helyezzék ezeket a műemlékeket különböző kontextusokba.
 
 ## Megoldás
 
 Íme egy lehetséges megoldás:
-
 ```python
 import openai
 import os
 import requests
 from PIL import Image
 import dotenv
-
+from openai import AzureOpenAI
 # import dotenv
 dotenv.load_dotenv()
 
 # Get endpoint and key from environment variables
-openai.api_base = "<replace with endpoint>"
-openai.api_key = "<replace with api key>"
+client = AzureOpenAI(
+  azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"],
+  api_key=os.environ['AZURE_OPENAI_API_KEY'],
+  api_version = "2024-02-01"
+  )
 
-# Assign the API version (DALL-E is currently supported for the 2023-06-01-preview API version only)
-openai.api_version = '2023-06-01-preview'
-openai.api_type = 'azure'
 
 disallow_list = "swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult"
 
@@ -428,7 +436,8 @@ The image needs to be in landscape orientation.
 The image needs to be in a 16:9 aspect ratio.
 
 Do not consider any input from the following that is not safe for work or appropriate for children.
-{disallow_list}"""
+{disallow_list}
+"""
 
 prompt = f"""{meta_prompt}
 Generate monument of the Arc of Triumph in Paris, France, in the evening light with a small child holding a Teddy looks on.
@@ -436,11 +445,10 @@ Generate monument of the Arc of Triumph in Paris, France, in the evening light w
 
 try:
     # Create an image by using the image generation API
-    generation_response = openai.Image.create(
+    generation_response = client.images.generate(
         prompt=prompt,    # Enter your prompt text here
         size='1024x1024',
-        n=2,
-        temperature=0,
+        n=1,
     )
     # Set the directory for the stored image
     image_dir = os.path.join(os.curdir, 'images')
@@ -453,7 +461,7 @@ try:
     image_path = os.path.join(image_dir, 'generated-image.png')
 
     # Retrieve the generated image
-    image_url = generation_response["data"][0]["url"]  # extract image URL from response
+    image_url = generation_response.data[0].url  # extract image URL from response
     generated_image = requests.get(image_url).content  # download the image
     with open(image_path, "wb") as image_file:
         image_file.write(generated_image)
@@ -463,15 +471,17 @@ try:
     image.show()
 
 # catch exceptions
-except openai.InvalidRequestError as err:
+except openai.BadRequestError as err:
     print(err)
 ```
 
-## Szép munka! Folytasd a tanulást
+## Nagyszerű munka! Folytasd a tanulást
 
-A lecke elvégzése után nézd meg a [Generatív AI tanulási gyűjteményünket](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), hogy tovább fejleszd generatív AI ismereteidet!
+Miután befejezted ezt a leckét, nézd meg a [Generatív AI tanulási gyűjteményt](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), hogy tovább fejleszthesd a generatív AI-val kapcsolatos tudásodat!
 
-Lépj tovább a 10. leckére, ahol azt nézzük meg, hogyan [építhetsz AI alkalmazásokat low-code eszközökkel](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst).
+Lépj tovább a 10. leckére, ahol azt vizsgáljuk meg, hogyan lehet [AI alkalmazásokat építeni alacsony kódú megoldásokkal](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst).
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+---
+
+**Felelősség kizárása**:  
+Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével került lefordításra. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget az ebből a fordításból eredő félreértésekért vagy téves értelmezésekért.

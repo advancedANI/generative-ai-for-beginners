@@ -225,13 +225,13 @@ Let's explain this code:
 
 Let's look at the code that generates the image in more detail:
 
-    ```python
-      generation_response = client.images.generate(
-                                prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
-                                size='1024x1024', n=1,
-                                model=os.environ['AZURE_OPENAI_DEPLOYMENT']
-                            )
-    ```
+   ```python
+     generation_response = client.images.generate(
+                               prompt='Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils',
+                               size='1024x1024', n=1,
+                               model=os.environ['AZURE_OPENAI_DEPLOYMENT']
+                           )
+   ```
 
 - **prompt**, is the text prompt that is used to generate the image. In this case, we're using the prompt "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils".
 - **size**, is the size of the image that is generated. In this case, we're generating an image that is 1024x1024 pixels.
@@ -251,15 +251,15 @@ You can also do the following:
  
 Here is an example using GPT Image:
 
-    ```python
-    response = client.images.edit(
-        model="gpt-image-1",
-        image=open("sunlit_lounge.png", "rb"),
-        mask=open("mask.png", "rb"),
-        prompt="A sunlit indoor lounge area with a pool containing a flamingo"
-    )
-    image_url = response.data[0].url
-    ```
+   ```python
+   response = client.images.edit(
+       model="gpt-image-1",
+       image=open("sunlit_lounge.png", "rb"),
+       mask=open("mask.png", "rb"),
+       prompt="A sunlit indoor lounge area with a pool containing a flamingo"
+   )
+   image_url = response.data[0].url
+   ```
 
   The base image would only contain the lounge with pool but the final image would have a flamingo:
 
@@ -474,3 +474,4 @@ except openai.BadRequestError as err:
 After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
 
 Head over to Lesson 10 where we will look at how to [build AI applications with low-code](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
+

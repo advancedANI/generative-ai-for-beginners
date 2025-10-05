@@ -185,7 +185,7 @@ openaiのセットアップと設定がわかったので、最初のテキス�
    > [!NOTE]
    > Azure OpenAIのキーは[https://portal.azure.com/](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst)で`Open AI`を検索し、`Open AI resource`を選択、「Keys and Endpoint」から`Key 1`をコピーしてください。
 
-1. _app.py_ファイルを作成し、以下のコードを記述：
+1. _app.py_ ファイルを作成し、以下のコードを記述：
 
    ```python
    import openai
@@ -240,65 +240,65 @@ openaiのセットアップと設定がわかったので、最初のテキス�
 このプロンプトに対して、以下のような回答が得られるかもしれません：
 
 ```output
-1. Roasted Chicken and Vegetables:
-Ingredients:
-- 4 chicken thighs
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 2 tablespoons olive oil
-- 2 cloves garlic, minced
-- 1 teaspoon dried thyme
-- 1 teaspoon dried oregano
-- Salt and pepper, to taste
+1. ローストチキンと野菜：
+材料：
+- 鶏もも肉 4枚
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- オリーブオイル 大さじ2
+- にんにく 2かけ（みじん切り）
+- 乾燥タイム 小さじ1
+- 乾燥オレガノ 小さじ1
+- 塩こしょう 適量
 
-2. Chicken and Potato Stew:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+2. チキンとじゃがいものシチュー：
+材料：
+- オリーブオイル 大さじ2
+- 玉ねぎ 1個（角切り）
+- にんにく 2かけ（みじん切り）
+- 鶏むね肉 2枚（角切り）
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- 乾燥オレガノ 小さじ1
+- 乾燥タイム 小さじ1
+- チキンブロス 1カップ
+- 塩こしょう 適量
 
-3. Chicken and Potato Bake:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+3. チキンとじゃがいものベイク：
+材料：
+-オリーブオイル 大さじ2
+- 鶏むね肉 2枚（角切り）
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- 玉ねぎ 1個（角切り）
+- ニンニク 2かけ（みじん切り）
+- 乾燥オレガノ 小さじ1
+- 乾燥タイム 小さじ1
+- チキンブロス 1カップ
+- 塩こしょう 適量
 
-4. Chicken and Potato Soup:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 4 cups chicken broth
-- Salt and pepper, to taste
+4. チキンとポテトのスープ：
+材料：
+- オリーブオイル 大さじ2
+- 玉ねぎ 1個（角切り）
+- ニンニク 2かけ（みじん切り）
+- 鶏むね肉 2枚（角切り）
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- 乾燥オレガノ 小さじ1
+- 乾燥タイム 小さじ1
+- チキンブロス 4カップ
+- 塩こしょう 適量
 
-5. Chicken and Potato Hash:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 1 teaspoon dried oregano
+5. チキンとポテトのハッシュ：
+材料：
+-オリーブオイル 大さじ2
+- 鶏むね肉 2枚（角切り）
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- 玉ねぎ 1個（さいの目切り）
+- ニンニク 2かけ（みじん切り）
+- 乾燥オレガノ 小さじ1
 ```
 
 この結果は素晴らしいですね。何を作るか決まりました。ここからさらに便利にするには：
@@ -315,68 +315,68 @@ Ingredients:
 すると、以下のような新しい結果が得られます：
 
 ```output
-1. Roasted Chicken and Vegetables:
-Ingredients:
-- 4 chicken thighs
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 2 tablespoons olive oil
-- 1 teaspoon dried thyme
-- 1 teaspoon dried oregano
-- Salt and pepper, to taste
+1. ローストチキンと野菜：
+材料：
+- 鶏もも肉 4枚
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- オリーブオイル 大さじ2
+- 乾燥タイム 小さじ1
+- 乾燥オレガノ 小さじ1
+- 塩こしょう 適量
 
-2. Chicken and Potato Stew:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+2. チキンとポテトのシチュー：
+材料：
+- オリーブオイル 大さじ2
+- 玉ねぎ 1個（角切り）
+- 鶏むね肉 2枚（角切り）
+- じゃがいも 2個（角切り）
+- にんじん 2本（角切り）
+- 乾燥オレガノ 小さじ1
+- 乾燥タイム 小さじ1
+- チキンブロス 1カップ
+- 塩こしょう 適量
 
-3. Chicken and Potato Bake:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+3. チキンとポテトのベイク：
+材料：
+- オリーブオイル 大さじ2
+- 鶏むね肉 2枚（角切り）
+- 2ジャガイモ（角切り）
+- ニンジン2本（角切り）
+- 玉ねぎ1個（角切り）
+- 乾燥オレガノ小さじ1
+- 乾燥タイム小さじ1
+- チキンブロス1カップ
+- 塩コショウ適量
 
-4. Chicken and Potato Soup:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 4 cups chicken broth
-- Salt and pepper, to taste
+4. チキンとポテトのスープ：
+材料：
+- オリーブオイル大さじ2
+- 玉ねぎ1個（角切り）
+- 鶏むね肉2枚（角切り）
+- ジャガイモ2個（角切り）
+- ニンジン2本（角切り）
+- 乾燥オレガノ小さじ1
+- 乾燥タイム小さじ1
+- チキンブロス4カップ
+- 塩コショウ適量
 
-5. Chicken and Potato Hash:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 1 teaspoon dried oregano
+5. チキンとポテトのハッシュ：
+材料：
+- オリーブオイル大さじ2
+- 鶏むね肉2枚（角切り）
+- ジャガイモ2個（角切り）
+- ニンジン2本（角切り）
+- 1玉ねぎ（さいの目切り）
+- 乾燥オレガノ 小さじ1
 
-Shopping List:
-- Olive oil
-- Onion
-- Thyme
-- Oregano
-- Salt
-- Pepper
+材料：
+- オリーブオイル
+- 玉ねぎ
+- タイム
+- オレガノ
+- 塩
+- コショウ
 ```
 
 にんにくを含まない5つのレシピと、家にある材料を考慮した買い物リストが表示されます。
@@ -385,7 +385,7 @@ Shopping List:
 
 シナリオを体験したので、これに合わせたコードを書いてみましょう。手順は以下の通りです：
 
-1. 既存の_app.py_ファイルをベースに使う
+1. 既存の _app.py_ ファイルをベースに使う
 1. `prompt`変数のコードを以下のように変更する：
 
    ```python
@@ -541,15 +541,16 @@ Shopping List:
      ```python
      new_prompt = f"{old_prompt_result} {prompt}"
      ```
-1. 新しいリクエストを作成しますが、最初のプロンプトで指定したトークン数も考慮して、今回は `max_tokens` を1200に設定します。
+     
+  1. 新しいリクエストを作成しますが、最初のプロンプトで指定したトークン数も考慮して、今回は `max_tokens` を1200に設定します。
 
-```python
+     ```python
      completion = openai.Completion.create(engine=deployment_name, prompt=new_prompt, max_tokens=1200)
      ```
 
-このコードを実行すると、次のような出力が得られます：
+     このコードを実行すると、次のような出力が得られます：
 
-```output
+     ```output
      No of recipes (for example, 5): 2
      List of ingredients (for example, chicken, potatoes, and carrots): apple,flour
      Filter (for example, vegetarian, vegan, or gluten-free): sugar
@@ -576,21 +577,21 @@ Shopping List:
      
 > 注意：Azureの場合は、以下の環境変数を設定する必要があります：
 
-     ```bash
+  ```bash
      OPENAI_API_TYPE=azure
      OPENAI_API_VERSION=2023-05-15
      OPENAI_API_BASE=<replace>
-     ```
+  ```
 
      コード内では、環境変数を次のように読み込みます：
 
-     ```python
+  ```python
      from dotenv import load_dotenv
 
      load_dotenv()
 
      openai.api_key = os.environ["OPENAI_API_KEY"]
-     ```
+  ```
 
 - **トークンの長さについて**。生成したいテキストに必要なトークン数を考慮しましょう。トークンはコストがかかるため、可能な限り節約することが望ましいです。例えば、プロンプトの表現を工夫してトークン数を減らせないか検討してみてください。
 
@@ -667,4 +668,5 @@ temperatureの概念は何をするものですか？
 次のレッスン7では、[チャットアプリケーションの作り方](../07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)を学びます！
 
 **免責事項**：  
+
 本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性を期しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語によるオリジナル文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じた誤解や誤訳について、当方は一切の責任を負いかねます。

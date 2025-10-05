@@ -1,47 +1,57 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "00f2643fec1571acc5d38cc1a3b972d5",
-  "translation_date": "2025-07-09T07:00:53+00:00",
+  "original_hash": "f1413b349a65b4e9eda3f48807656a6d",
+  "translation_date": "2025-08-26T14:31:08+00:00",
   "source_file": "00-course-setup/README.md",
   "language_code": "zh"
 }
 -->
-# 课程入门指南
+# 开始学习本课程
 
-我们非常期待你开始这门课程，看看你会被生成式 AI 激发出什么创意！
+我们非常期待你开始这门课程，看看你会受到什么启发，利用生成式 AI 构建出怎样的项目！
 
-为了确保你的学习顺利，本页将介绍设置步骤、技术要求以及遇到问题时的求助途径。
+为了帮助你顺利学习，本页将介绍环境配置步骤、技术要求，以及遇到问题时的求助方式。
 
-## 设置步骤
+## 配置步骤
 
-开始学习本课程前，你需要完成以下步骤。
+要开始学习本课程，你需要完成以下步骤。
 
-### 1. Fork 这个仓库
+### 1. Fork 本仓库
 
-将[整个仓库 Fork](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)到你自己的 GitHub 账号，这样你才能修改代码并完成挑战。你也可以[给这个仓库加星标 (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst)，方便以后找到它和相关仓库。
+[将整个仓库 Fork 到你的 GitHub 账号](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)，这样你就可以修改代码并完成挑战。你也可以[为本仓库加星 (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst)，方便以后查找本仓库及相关项目。
 
-### 2. 创建 Codespace
+### 2. 创建 codespace
 
-为了避免运行代码时出现依赖问题，我们建议在[GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst)中运行本课程。
+为避免运行代码时出现依赖问题，我们推荐你在 [GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst) 中学习本课程。
 
-你可以在 Fork 后的仓库中选择 `Code` 选项，然后选择 **Codespaces** 来创建。
+在你的 fork 仓库中：**Code -> Codespaces -> New on main**
 
 ![显示创建 codespace 按钮的对话框](../../../00-course-setup/images/who-will-pay.webp)
 
-### 3. 存储你的 API 密钥
+#### 2.1 添加密钥
 
-在构建任何应用时，保护好你的 API 密钥非常重要。我们建议不要将 API 密钥直接写入代码。将密钥提交到公共仓库可能导致安全风险，甚至被恶意使用产生不必要的费用。
+1. ⚙️ 齿轮图标 -> Command Pallete -> Codespaces : Manage user secret -> Add a new secret。
+2. 名称填写 OPENAI_API_KEY，粘贴你的密钥，保存。
 
-以下是为 Python 创建 `.env` 文件并添加 `GITHUB_TOKEN` 的分步指南：
+### 3. 接下来做什么？
 
-1. **进入项目目录**：打开终端或命令行，切换到你想创建 `.env` 文件的项目根目录。
+| 我想要…              | 前往…                                                                  |
+|---------------------|-------------------------------------------------------------------------|
+| 开始第一课           | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
+| 离线学习             | [`setup-local.md`](02-setup-local.md)                                   |
+| 配置 LLM 服务商      | [`providers.md`](providers.md)                                          |
+| 结识其他学习者       | [加入我们的 Discord](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
 
-   ```bash
-   cd path/to/your/project
-   ```
+## 故障排查
 
-2. **创建 `.env` 文件**：用你喜欢的文本编辑器新建一个名为 `.env` 的文件。如果用命令行，可以使用 `touch`（Unix 系统）或 `echo`（Windows）：
+| 症状                                       | 解决方法                                                         |
+|-------------------------------------------|-----------------------------------------------------------------|
+| 容器构建卡住超过 10 分钟                   | **Codespaces ➜ “Rebuild Container”**                            |
+| `python: command not found`               | 终端未连接；点击 **+** ➜ *bash*                                  |
+| OpenAI 返回 `401 Unauthorized`            | `OPENAI_API_KEY` 错误或已过期                                   |
+| VS Code 显示 “Dev container mounting…”    | 刷新浏览器标签页——Codespaces 有时会断开连接                     |
+| Notebook 内核缺失                         | Notebook 菜单 ➜ **Kernel ▸ Select Kernel ▸ Python 3**           |
 
    Unix 系统：
 
@@ -55,21 +65,21 @@ CO_OP_TRANSLATOR_METADATA:
    echo . > .env
    ```
 
-3. **编辑 `.env` 文件**：用文本编辑器打开 `.env` 文件（如 VS Code、Notepad++ 等），添加以下内容，将 `your_github_token_here` 替换为你的真实 GitHub 令牌：
+3. **编辑 `.env` 文件**：用文本编辑器（如 VS Code、Notepad++ 或其他编辑器）打开 `.env` 文件。添加如下内容，将 `your_github_token_here` 替换为你的 GitHub token：
 
    ```env
    GITHUB_TOKEN=your_github_token_here
    ```
 
-4. **保存文件**：保存并关闭编辑器。
+4. **保存文件**：保存更改并关闭编辑器。
 
-5. **安装 `python-dotenv`**：如果还没安装，需要用 `pip` 安装 `python-dotenv`，以便从 `.env` 文件加载环境变量：
+5. **安装 `python-dotenv`**：如果还没安装，需要用 `pip` 安装 `python-dotenv` 包，以便从 `.env` 文件加载环境变量：
 
    ```bash
    pip install python-dotenv
    ```
 
-6. **在 Python 脚本中加载环境变量**：在你的 Python 脚本中，使用 `python-dotenv` 加载 `.env` 文件中的环境变量：
+6. **在 Python 脚本中加载环境变量**：在你的 Python 脚本中，使用 `python-dotenv` 包加载 `.env` 文件中的环境变量：
 
    ```python
    from dotenv import load_dotenv
@@ -84,32 +94,33 @@ CO_OP_TRANSLATOR_METADATA:
    print(github_token)
    ```
 
-完成以上步骤后，你就成功创建了 `.env` 文件，添加了 GitHub 令牌，并在 Python 应用中加载了它。
+就这样！你已经成功创建了 `.env` 文件，添加了 GitHub token，并将其加载到 Python 应用中。
 
-## 如何在本地电脑运行
+## 如何在本地运行
 
-要在本地运行代码，你需要先安装某个版本的[Python](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst)。
+如果你想在本地电脑上运行代码，需要先[安装 Python](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst)。
 
-然后，克隆仓库：
+然后克隆仓库：
 
 ```shell
 git clone https://github.com/microsoft/generative-ai-for-beginners
 cd generative-ai-for-beginners
 ```
 
-确认所有内容都准备好后，就可以开始学习了！
+一切准备好后，就可以开始啦！
 
 ## 可选步骤
 
 ### 安装 Miniconda
 
-[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) 是一个轻量级安装器，用于安装 [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst)、Python 以及一些包。Conda 是一个包管理器，方便你设置和切换不同的 Python [**虚拟环境**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst)和包。它也适合安装那些无法通过 `pip` 获取的包。
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) 是一个轻量级的 [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst) 和 Python 安装器，还包含一些常用包。
+Conda 是一个包管理器，可以方便地创建和切换不同的 Python [**虚拟环境**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) 及包。对于那些 `pip` 无法安装的包，Conda 也很有用。
 
-你可以参考[Miniconda 安装指南](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst)进行安装。
+你可以参考 [MiniConda 安装指南](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) 进行安装。
 
-安装好 Miniconda 后，如果还没克隆仓库，请先克隆[仓库](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)。
+安装好 Miniconda 后，需要克隆[本仓库](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)（如果还没克隆的话）。
 
-接下来需要创建虚拟环境。使用 Conda，可以创建一个环境配置文件（_environment.yml_）。如果你使用 Codespaces，请在 `.devcontainer` 目录下创建，即 `.devcontainer/environment.yml`。
+接下来需要创建一个虚拟环境。用 Conda 创建新环境文件（_environment.yml_）。如果你在 Codespaces 中操作，请在 `.devcontainer` 目录下创建，即 `.devcontainer/environment.yml`。
 
 将下面的内容填入你的环境文件：
 
@@ -127,13 +138,13 @@ dependencies:
       - azure-ai-ml
 ```
 
-如果使用 Conda 时遇到错误，可以在终端手动安装 Microsoft AI 库，命令如下：
+如果你在使用 conda 时遇到错误，可以在终端手动安装 Microsoft AI 库，命令如下：
 
 ```
 conda install -c microsoft azure-ai-ml
 ```
 
-环境文件中指定了所需依赖。`<environment-name>` 是你想给 Conda 环境起的名字，`<python-version>` 是你想用的 Python 版本，比如 `3` 表示最新的主版本。
+环境文件中指定了所需依赖。`<environment-name>` 是你想为 Conda 环境起的名字，`<python-version>` 是你想用的 Python 版本，比如 `3` 代表最新主版本。
 
 完成后，在命令行/终端运行以下命令创建 Conda 环境：
 
@@ -142,85 +153,86 @@ conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontai
 conda activate ai4beg
 ```
 
-如果遇到问题，请参考[Conda 环境指南](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst)。
+如果遇到问题，可以参考 [Conda 环境管理指南](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst)。
 
-### 使用带 Python 支持扩展的 Visual Studio Code
+### 在 Visual Studio Code 中使用 Python 扩展
 
-我们推荐使用[Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst)编辑器，并安装[Python 支持扩展](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst)来学习本课程。不过这只是建议，并非强制要求。
+我们推荐你在本课程中使用 [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) 编辑器，并安装 [Python 扩展](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst)。当然，这只是推荐，并非强制要求。
 
-> **注意**：在 VS Code 中打开课程仓库时，你可以选择在容器中设置项目。这是因为课程仓库中包含了[特殊的 `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst)目录。后面会详细介绍。
+> **Note**: 打开课程仓库时，VS Code 会提示你可以在容器中配置项目。这是因为仓库中有一个特殊的 [.devcontainer](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) 目录。后面会详细介绍。
 
-> **注意**：克隆并打开目录后，VS Code 会自动建议你安装 Python 支持扩展。
+> **Note**: 克隆并打开目录后，VS Code 会自动建议你安装 Python 扩展。
 
-> **注意**：如果 VS Code 提示你重新在容器中打开仓库，请拒绝此请求，以便使用本地安装的 Python 版本。
+> **Note**: 如果 VS Code 建议你在容器中重新打开仓库，请拒绝，以便使用本地安装的 Python。
 
 ### 在浏览器中使用 Jupyter
 
-你也可以直接在浏览器中使用[Jupyter 环境](https://jupyter.org?WT.mc_id=academic-105485-koreyst)进行项目开发。经典 Jupyter 和[Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst)都提供了自动补全、代码高亮等良好开发体验。
+你也可以直接在浏览器中使用 [Jupyter 环境](https://jupyter.org?WT.mc_id=academic-105485-koreyst)进行项目开发。无论是经典 Jupyter 还是 [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) 都提供了很好的开发体验，比如自动补全、代码高亮等。
 
-要在本地启动 Jupyter，打开终端/命令行，切换到课程目录，执行：
+要在本地启动 Jupyter，请在终端/命令行进入课程目录，执行：
 
 ```bash
 jupyter notebook
 ```
 
-或者
+或
 
 ```bash
 jupyterhub
 ```
 
-这会启动一个 Jupyter 实例，访问地址会显示在命令行窗口中。
+这样会启动一个 Jupyter 实例，命令行窗口会显示访问的 URL。
 
-访问该地址后，你会看到课程大纲，并能打开任何 `*.ipynb` 文件，例如 `08-building-search-applications/python/oai-solution.ipynb`。
+访问该 URL 后，你会看到课程大纲，并可以浏览任意 `*.ipynb` 文件。例如，`08-building-search-applications/python/oai-solution.ipynb`。
 
 ### 在容器中运行
 
-除了在本地电脑或 Codespace 设置环境外，你还可以使用[容器](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>)。课程仓库中的特殊 `.devcontainer` 文件夹使 VS Code 能够在容器中搭建项目。若不使用 Codespaces，则需要安装 Docker。说实话，这需要一定的操作经验，我们建议只有有容器使用经验的同学尝试。
+除了在本地或 Codespace 配置环境外，你还可以使用 [容器](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>)。课程仓库中的 `.devcontainer` 文件夹让 VS Code 可以在容器中配置项目。如果不是在 Codespaces 中，这需要你安装 Docker，操作相对复杂，建议有容器经验的同学使用。
 
-使用 GitHub Codespaces 时，保护 API 密钥的最佳方式之一是使用 Codespace Secrets。请参考[Codespaces 秘密管理](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst)指南了解详情。
+在 GitHub Codespaces 中保护 API 密钥的最佳方式之一是使用 Codespace Secrets。请参考 [Codespaces 密钥管理指南](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) 了解更多信息。
 
 ## 课程内容与技术要求
 
-本课程包含 6 个概念课和 6 个编程课。
+本课程包含 6 节概念课和 6 节编程课。
 
-编程课使用 Azure OpenAI 服务。你需要拥有 Azure OpenAI 服务的访问权限和 API 密钥才能运行代码。你可以通过[填写申请](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst)来获取访问权限。
+在编程课中，我们使用 Azure OpenAI 服务。你需要有 Azure OpenAI 服务的访问权限和 API 密钥才能运行代码。你可以[填写申请表](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst)获取访问权限。
 
-在等待申请审批期间，每个编程课也包含一个 `README.md` 文件，你可以查看代码和输出结果。
+在等待申请审核期间，每节编程课的 `README.md` 文件中都可以查看代码和输出结果。
 
 ## 第一次使用 Azure OpenAI 服务
 
-如果你是第一次使用 Azure OpenAI 服务，请参考本指南，了解如何[创建和部署 Azure OpenAI 服务资源](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst)。
+如果你是第一次使用 Azure OpenAI 服务，请参考此指南，了解如何[创建并部署 Azure OpenAI 服务资源](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst)。
 
 ## 第一次使用 OpenAI API
 
-如果你是第一次使用 OpenAI API，请参考本指南，了解如何[创建和使用接口](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst)。
+如果你是第一次使用 OpenAI API，请参考[创建和使用接口的指南](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst)。
 
-## 认识其他学习者
+## 结识其他学习者
 
-我们在官方的[AI Community Discord 服务器](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)中创建了频道，方便你结识其他学习者。这是与志同道合的创业者、开发者、学生以及所有想提升生成式 AI 技能的人交流的好地方。
+我们在官方 [AI Community Discord 服务器](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) 上为大家创建了交流频道。这里是结识志同道合的创业者、开发者、学生，以及所有想在生成式 AI 领域提升自我的人的好地方。
 
 [![加入 discord 频道](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
 
-项目团队也会在该 Discord 服务器上帮助学习者。
+项目团队成员也会在 Discord 上为大家提供帮助。
 
 ## 贡献
 
-本课程是一个开源项目。如果你发现改进点或问题，请创建[Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst)或提交[GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst)。
+本课程是一个开源项目。如果你发现有改进空间或问题，请提交 [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) 或记录 [GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst)。
 
-项目团队会跟踪所有贡献。参与开源是构建生成式 AI 职业生涯的绝佳方式。
+项目团队会跟踪所有贡献。参与开源是提升你在生成式 AI 领域职业发展的绝佳方式。
 
-大多数贡献需要你同意贡献者许可协议（CLA），声明你有权且确实授予我们使用你贡献的权利。详情请访问[CLA，贡献者许可协议网站](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst)。
+大多数贡献需要你同意贡献者许可协议（CLA），声明你有权并同意授予我们使用你贡献内容的权利。详情请访问 [CLA, 贡献者许可协议网站](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst)。
 
-重要提示：翻译本仓库内容时，请确保不要使用机器翻译。我们会通过社区核实翻译质量，请仅在你熟练掌握该语言时自愿参与翻译。
+重要提示：在翻译本仓库内容时，请确保不要使用机器翻译。我们会通过社区审核翻译内容，因此请只在你精通的语言下自愿参与翻译。
 
-提交 Pull Request 时，CLA 机器人会自动判断你是否需要提供 CLA，并相应标注（如标签、评论）。只需按照机器人提示操作即可。你只需在所有使用我们 CLA 的仓库中完成一次。
+当你提交 pull request 时，CLA-bot 会自动判断你是否需要签署 CLA，并在 PR 上做出相应标记（如标签、评论）。只需按照 bot 的指示操作即可。你只需在所有使用我们 CLA 的仓库中做一次此操作。
 
-本项目采用了[微软开源行为准则](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst)。更多信息请阅读行为准则常见问题，或通过邮箱 [opencode@microsoft.com](mailto:opencode@microsoft.com) 联系我们，提出任何问题或建议。
+本项目采用了 [Microsoft 开源行为准则](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst)。更多信息请阅读行为准则 FAQ，或通过 [Email opencode](opencode@microsoft.com) 联系我们提出问题或建议。
 
 ## 让我们开始吧
+现在你已经完成了本课程所需的步骤，让我们开始吧，首先来了解一下[生成式人工智能和大语言模型的简介](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)。
 
-既然你已经完成了学习本课程所需的准备步骤，接下来就从[生成式 AI 和大语言模型简介](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)开始吧。
+---
 
 **免责声明**：  
-本文件使用 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。虽然我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言的原文应被视为权威来源。对于重要信息，建议使用专业人工翻译。对于因使用本翻译而产生的任何误解或误释，我们不承担任何责任。
+本文件由 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻译。虽然我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文件应被视为权威来源。对于关键信息，建议采用专业人工翻译。因使用本翻译而产生的任何误解或误读，我们概不负责。
